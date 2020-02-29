@@ -16,16 +16,20 @@ mongoose.connect(
     process.env.my +
     ":" +
     process.env.pass +
-    "@cluster0-ghxig.mongodb.net/test?retryWrites=true&w=majority"
+    "@cluster0-ghxig.mongodb.net/test?retryWrites=true&w=majority",
+  { useUnifiedTopology: true, useNewUrlParser: true }
 );
 mongoose.Promise = global.Promise;
 
 app.use(logger("dev"));
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/images", express.static("images"));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

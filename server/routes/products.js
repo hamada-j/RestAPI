@@ -11,14 +11,27 @@ const storege = multer.diskStorage({
     cb(null, new Date().toISOString() + file.originalname);
   }
 });
-const upload = multer({ storage: storege });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({
+  storage: storege,
+  limits: {
+    fieldSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
 const Product = require("../model/product");
 
 // GET Method
 router.get("/", (req, res, next) => {
   Product.find()
-    .select("name price _id")
+    .select("name price _id productImage")
     //.populate("product", "name")
     .exec()
     .then(allProducts => {
@@ -28,6 +41,7 @@ router.get("/", (req, res, next) => {
           return {
             name: prod.name,
             price: prod.price,
+            productImage: prod.productImage,
             _id: prod._id,
             request: {
               type: "GET",
@@ -58,7 +72,8 @@ router.post("/", upload.single("productImage"), (req, res, next) => {
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
-    price: req.body.price
+    price: req.body.price,
+    productImage: req.file.path
   });
   product
     .save()
@@ -69,6 +84,7 @@ router.post("/", upload.single("productImage"), (req, res, next) => {
         createdProduct: {
           name: result.name,
           price: result.price,
+          productImage: prod.productImage,
           _id: result._id,
           request: {
             type: "GET",
@@ -87,7 +103,7 @@ router.post("/", upload.single("productImage"), (req, res, next) => {
 router.get("/:productId", (req, res, next) => {
   const id = req.params.productId;
   Product.findById(id)
-    .select("name price _id")
+    .select("name price _id productImage")
     .exec()
     .then(documente => {
       console.log("From Mongo:", documente);
