@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "node ./pug/bin/www",
-    "startdev": "nodemon ./pug/bin/www"
+    "start": "node ./server/bin/www",
+    "startdev": "nodemon ./server/bin/www"
   },
   "author": "Hamada",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
