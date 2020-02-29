@@ -1,5 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const mongoose = require("mongoose");
+const Product = require("../model/product");
 
 // GET Method
 router.get("/", function(req, res, next) {
@@ -10,10 +12,19 @@ router.get("/", function(req, res, next) {
 
 // POST Method
 router.post("/", function(req, res, next) {
-  const product = {
+  const product = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     price: req.body.price
-  };
+  });
+  product
+    .save()
+    .then(result => {
+      console.log(result);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   res.status(201).json({
     message: "product posted with status 201",
     createdProduct: product

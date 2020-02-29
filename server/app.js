@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
@@ -10,11 +11,17 @@ const ordersRouter = require("./routes/orders");
 
 const app = express();
 
+mongoose.connect(
+  "mongodb+srv://" +
+    process.env.my +
+    ":" +
+    process.env.pass +
+    "@cluster0-ghxig.mongodb.net/test?retryWrites=true&w=majority"
+);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 

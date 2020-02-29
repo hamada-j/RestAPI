@@ -137,3 +137,10 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
 });
 ```
+
+### DATABASE: MONGO DB - ATLAS /// with mongoose package ///
+
+- Creata and Connect to Cluster0 in Mongo
+
+- install mongoose: `$ npm install --save mongoose`
+- in app.js added
