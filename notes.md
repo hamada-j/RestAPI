@@ -144,3 +144,10 @@ app.use((req, res, next) => {
 
 - install mongoose: `$ npm install --save mongoose`
 - in app.js added
+
+### ADD PHOTO /// with multer package ///
+
+- add photo to product
+
+- install multer: `$ npm install --save multer`
+- in app.js added

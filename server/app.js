@@ -18,6 +18,8 @@ mongoose.connect(
     process.env.pass +
     "@cluster0-ghxig.mongodb.net/test?retryWrites=true&w=majority"
 );
+mongoose.Promise = global.Promise;
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));

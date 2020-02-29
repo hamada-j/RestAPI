@@ -1,12 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const multer = require("multer");
+
+const storege = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./server/public/images/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+const upload = multer({ storage: storege });
+
 const Product = require("../model/product");
 
 // GET Method
 router.get("/", (req, res, next) => {
   Product.find()
     .select("name price _id")
+    //.populate("product", "name")
     .exec()
     .then(allProducts => {
       const response = {
@@ -40,7 +53,8 @@ router.get("/", (req, res, next) => {
 });
 
 // POST Method
-router.post("/", (req, res, next) => {
+router.post("/", upload.single("productImage"), (req, res, next) => {
+  console.log(req.file);
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -78,7 +92,12 @@ router.get("/:productId", (req, res, next) => {
     .then(documente => {
       console.log("From Mongo:", documente);
       if (documente) {
-        res.status(200).json(documente);
+        res.status(200).json({
+          product: documente,
+          request: {
+            type: "http://localhost:3000/products"
+          }
+        });
       } else {
         res.status(404).json({ message: "Product Id Not Exist" });
       }
@@ -103,8 +122,13 @@ router.patch("/:productId", (req, res, next) => {
   )
     .exec()
     .then(result => {
-      console.log(result);
-      res.status(200).json(result);
+      res.status(200).json({
+        message: "Product is Update fine",
+        request: {
+          type: "GET",
+          url: "http://localhost:3000/products/" + id
+        }
+      });
     })
     .catch(err => {
       console.log(err);
@@ -119,7 +143,17 @@ router.delete("/:productId", (req, res, next) => {
   Product.remove({ _id: id })
     .exec()
     .then(result => {
-      res.status(200).json(result);
+      res.status(200).json({
+        message: "Product is Deleted",
+        request: {
+          type: "POST",
+          url: "http://localhost:3000/products/",
+          dataBody: {
+            name: "String",
+            price: "Number"
+          }
+        }
+      });
     })
     .catch(err => {
       console.log(err);
