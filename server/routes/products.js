@@ -6,16 +6,30 @@ const Product = require("../model/product");
 // GET Method
 router.get("/", (req, res, next) => {
   Product.find()
+    .select("name price _id")
     .exec()
     .then(allProducts => {
-      console.log(allProducts);
-      if (allProducts.length >= 0) {
-        res.status(200).json(allProducts);
-      } else {
-        res.status(404).json({
-          message: "Array dont has products"
-        });
-      }
+      const response = {
+        count: allProducts.length,
+        products: allProducts.map(prod => {
+          return {
+            name: prod.name,
+            price: prod.price,
+            _id: prod._id,
+            request: {
+              type: "GET",
+              url: "http://localhost:3000/product/" + prod._id
+            }
+          };
+        })
+      };
+      // if (allProducts.length >= 0) {
+      res.status(200).json(response);
+      // } else {
+      //   res.status(404).json({
+      //     message: "Array dont has products"
+      //   });
+      // }
     })
     .catch(err => {
       console.log(err);
@@ -37,8 +51,16 @@ router.post("/", (req, res, next) => {
     .then(result => {
       console.log(result);
       res.status(201).json({
-        message: "Product posted with status: 201",
-        createdProduct: result
+        message: "Product created with status: 201",
+        createdProduct: {
+          name: result.name,
+          price: result.price,
+          _id: result._id,
+          request: {
+            type: "GET",
+            url: "http://localhost:3000/product/" + result._id
+          }
+        }
       });
     })
     .catch(err => {
@@ -51,6 +73,7 @@ router.post("/", (req, res, next) => {
 router.get("/:productId", (req, res, next) => {
   const id = req.params.productId;
   Product.findById(id)
+    .select("name price _id")
     .exec()
     .then(documente => {
       console.log("From Mongo:", documente);
@@ -64,16 +87,6 @@ router.get("/:productId", (req, res, next) => {
       console.log(err);
       res.status(500).json({ error: err });
     });
-  // if (id === "special") {
-  //   res.status(200).json({
-  //     message: "from GET SPECIAL products url",
-  //     id: id
-  //   });
-  // } else {
-  //   res.status(200).json({
-  //     message: "you passed an ID"
-  //   });
-  // }
 });
 router.patch("/:productId", (req, res, next) => {
   const id = req.params.productId;
