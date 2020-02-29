@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Product = require("../model/product");
 
 // GET Method
-router.get("/", function(req, res, next) {
+router.get("/", (req, res, next) => {
   Product.find()
     .exec()
     .then(allProducts => {
@@ -26,7 +26,7 @@ router.get("/", function(req, res, next) {
 });
 
 // POST Method
-router.post("/", function(req, res, next) {
+router.post("/", (req, res, next) => {
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -48,7 +48,7 @@ router.post("/", function(req, res, next) {
 });
 
 // GET Method FOR ID PRODUCT
-router.get("/:productId", function(req, res, next) {
+router.get("/:productId", (req, res, next) => {
   const id = req.params.productId;
   Product.findById(id)
     .exec()
@@ -64,7 +64,6 @@ router.get("/:productId", function(req, res, next) {
       console.log(err);
       res.status(500).json({ error: err });
     });
-
   // if (id === "special") {
   //   res.status(200).json({
   //     message: "from GET SPECIAL products url",
@@ -76,13 +75,33 @@ router.get("/:productId", function(req, res, next) {
   //   });
   // }
 });
-router.patch("/:productId", function(req, res, next) {
-  res.status(200).json({
-    message: "update the product "
-  });
+router.patch("/:productId", (req, res, next) => {
+  const id = req.params.productId;
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+  Product.update(
+    { _id: id },
+    {
+      $set: updateOps
+      //{ name: req.params.newName, price: req.params.newPrice }
+    }
+  )
+    .exec()
+    .then(result => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
-router.delete("/:productId", function(req, res, next) {
+router.delete("/:productId", (req, res, next) => {
   const id = req.params.productId;
   Product.remove({ _id: id })
     .exec()
