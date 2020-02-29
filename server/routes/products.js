@@ -45,7 +45,7 @@ router.get("/", (req, res, next) => {
             _id: prod._id,
             request: {
               type: "GET",
-              url: "http://localhost:3000/product/" + prod._id
+              url: "http://localhost:3000/products/" + prod._id
             }
           };
         })
@@ -88,7 +88,7 @@ router.post("/", upload.single("productImage"), (req, res, next) => {
           _id: result._id,
           request: {
             type: "GET",
-            url: "http://localhost:3000/product/" + result._id
+            url: "http://localhost:3000/products/" + result._id
           }
         }
       });

@@ -151,3 +151,12 @@ app.use((req, res, next) => {
 
 - install multer: `$ npm install --save multer`
 - in app.js added
+
+### AUTHENTICATION
+
+CLIENT<---->token<----->SERVER (RESTful API)
+
+verification en both side of is verification valid to make a strict connection. JSON web Token(json data + signature ===> JWT ) Not Encripted
+
+- BCRYPT from `npm install --save bcrypt` for "hash" the password of client.
+- JWT from `npm install jsonwebtoken --save` for "token" sesion.
