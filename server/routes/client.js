@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const Client = require("../model/client");
 
@@ -59,9 +60,20 @@ router.post("/login", (req, res, next) => {
           if (err) {
             return res.status(401).json({ message: "Authentification failed" });
           }
+          const token = jwt.sign(
+            {
+              clientId: arrClient[0]._id,
+              email: arrClient[0].email
+            },
+            process.env.jwt_key,
+            {
+              expiresIn: 400
+            }
+          );
           if (result) {
             return res.status(200).json({
-              message: "Authentification is good"
+              message: "Authentification is good",
+              token: token
             });
           }
           res.status(401).json({ message: "Authentification failed" });

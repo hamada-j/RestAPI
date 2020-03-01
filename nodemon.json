@@ -1,6 +1,7 @@
 {
   "env": {
     "my": "hamada",
-    "pass": "QIsD6et2Sm29IQ5D"
+    "pass": "QIsD6et2Sm29IQ5D",
+    "jwt_key": "a0?12b34/ZX"
   }
 }

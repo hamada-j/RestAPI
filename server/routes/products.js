@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
+const middle = require("../middleware/");
 
 const storege = multer.diskStorage({
   destination: function(req, file, cb) {
