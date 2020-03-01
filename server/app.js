@@ -20,7 +20,7 @@ const app = express();
 //   database: "mySQL"
 // });
 // connection.connect();
-// connection.query("SELECT * FROM clientes ", function(err, rows, fields) {
+// connection.query("SELECT * FROM gimnasio.clientes ", function(err, rows, fields) {
 //   if (err) throw err;
 
 //   console.log("The solution is: ", rows[0].clientes);
