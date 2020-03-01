@@ -12,6 +12,20 @@ const clientRouter = require("./routes/client");
 
 const app = express();
 
+// const mysql = require("mysql");
+// const connection = mysql.createConnection({
+//   host: "127.0.0.1",
+//   user: "root",
+//   password: "root",
+//   database: "mySQL"
+// });
+// connection.connect();
+// connection.query("SELECT * FROM clientes ", function(err, rows, fields) {
+//   if (err) throw err;
+
+//   console.log("The solution is: ", rows[0].clientes);
+// });
+
 mongoose.connect(
   "mongodb+srv://" +
     process.env.my +
