@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const hbs = require("express-hbs");
 
 const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
@@ -37,6 +38,17 @@ mongoose.connect(
 mongoose.Promise = global.Promise;
 
 app.use(logger("dev"));
+
+app.engine(
+  "hbs",
+  hbs.express4({
+    partialsDir: __dirname + "/views/partials"
+  })
+);
+
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "hbs");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
