@@ -113,11 +113,10 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="http://localhost:3000/client/signup" class="navlink"
-                                    data-type="menu">Signup</a>
+                                <a href="./client/signup" class="navlink" data-type="menu">Signup</a>
                             </li>
                             <li>
-                                <a href="http://localhost:3000/client/login">Login</a>
+                                <a href="./client/login" class="navlink">Login</a>
                             </li>
                         </ul>
                     </li>
@@ -126,22 +125,8 @@
             </div>
         </div>
     </nav>
-    <div id="pageContainer" class="test">
-        <div class="card-group">
-            {{#each prod}}
-            <div class="card">
-                <img src="{{productImage}}" class="card-img-top" alt="Product">
-                <div class="card-body">
-                    <h5 class="card-title">{{name}}</h5>
-                    <p class="card-text">id: {{_id}}</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Categoriy</small>
-                </div>
-            </div>
-            {{/each}}
-        </div>
-
+    <div id="pageContainer" class="container">
+        <h1> contenido fijo</h1>
     </div>
 
     <MARQUEE HEIGHT=60> This is a demo project of a store manager where customers can buy products with their
@@ -154,8 +139,7 @@
         <nav class="navbar navbar-inverse">
             <div class="navbar-inner navbar-content-center">
                 <p class="text-muted" style="text-align:center;margin-top: 10px;font-style:italic;"> by <a
-                        href="https://github.com/hamada-j">Hamada</a>
-                    .</p>
+                        href="https://github.com/hamada-j">Hamada</a>.</p>
             </div>
         </nav>
     </div>

@@ -40,7 +40,7 @@ router.get("/views/partials", (req, res, next) => {
       for (let i = 0; i < allProducts.length; i++) {
         image = allProducts[i].productImage.slice(13);
       }
-      res.render("index", { prod: allProducts });
+      res.render("partials/index", { prod: allProducts });
     });
 });
 

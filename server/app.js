@@ -42,7 +42,7 @@ app.use(logger("dev"));
 app.engine(
   "hbs",
   hbs.express4({
-    partialsDir: __dirname + "/views/partials"
+    partialsDir: __dirname + "/views"
   })
 );
 
