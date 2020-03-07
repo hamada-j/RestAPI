@@ -30,6 +30,20 @@ const upload = multer({
 
 const Product = require("../model/product");
 
+router.get("/views/partials", (req, res, next) => {
+  Product.find()
+    .select("name price _id productImage")
+    //.populate("product", "name")
+    .exec()
+    .then(allProducts => {
+      let image;
+      for (let i = 0; i < allProducts.length; i++) {
+        image = allProducts[i].productImage.slice(13);
+      }
+      res.render("index", { prod: allProducts });
+    });
+});
+
 // GET Method
 router.get("/", (req, res, next) => {
   Product.find()
@@ -74,12 +88,13 @@ router.post(
   middleware,
   upload.single("productImage"),
   (req, res, next) => {
-    console.log(req.file);
+    const imagePath = req.file.path.slice(13);
+    console.log(imagePath);
     const product = new Product({
       _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
       price: req.body.price,
-      productImage: req.file.path
+      productImage: imagePath
     });
     product
       .save()
