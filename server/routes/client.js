@@ -74,6 +74,7 @@ router.post("/login", (req, res, next) => {
                 expiresIn: "1h"
               }
             );
+            res.render("index", { prod: allProducts });
             return res.status(200).json({
               message: "Authentification is good",
               token: token

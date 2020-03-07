@@ -9,20 +9,15 @@
     <link data-require="bootstrap@*" data-semver="3.2.0" rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
     <link data-require="font-awesome@*" data-semver="4.2.0" rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
     <script data-require="jquery@*" data-semver="2.1.1"
-        src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script data-require="bootstrap@*" data-semver="3.2.0"
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
-    <script data-require="handlebars.js@1.3.0" data-semver="1.3.0"
-        src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="carouselHandler.js"></script>
-    <script src="script.js"></script>
+
     <style>
         body {
-            background-color: #69AAFF;
+            background-color: rgb(164, 196, 236);
         }
 
         .rowitem img {
@@ -118,10 +113,11 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="#" class="navlink" data-type="menu">Signup</a>
+                                <a href="http://localhost:3000/client/signup" class="navlink"
+                                    data-type="menu">Signup</a>
                             </li>
                             <li>
-                                <a href="#">Login</a>
+                                <a href="http://localhost:3000/client/login">Login</a>
                             </li>
                         </ul>
                     </li>
@@ -130,8 +126,30 @@
             </div>
         </div>
     </nav>
-    <div id="pageContainer">
+    <div id="pageContainer" class="test">
+        <div class="card-group">
+            {{#each prod}}
+            <div class="card">
+                <img src="{{productImage}}" class="card-img-top" alt="Product">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">id: {{_id}}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Categoriy</small>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
     </div>
+
+    <MARQUEE HEIGHT=60> This is a demo project of a store manager where customers can buy products with their
+        search order and admins can add
+        products for sale ... technologies: NodeJs, ExpresJS, the database is MongoDB-Atlas managed by Mongoose for
+        relational
+        schemes, Nodemon development, Handlebars build semantic templates ...
+    </MARQUEE>
     <div id="footer" class="container" style="margin-left:-15px;">
         <nav class="navbar navbar-inverse">
             <div class="navbar-inner navbar-content-center">
@@ -141,6 +159,7 @@
             </div>
         </nav>
     </div>
+
 </body>
 
 </html>
