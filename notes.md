@@ -160,3 +160,4 @@ verification en both side of is verification valid to make a strict connection. 
 
 - BCRYPT from `npm install --save bcrypt` for "hash" the password of client.
 - JWT from `npm install jsonwebtoken --save` for "token" sesion.
+- CORS from `npm install cors --save` for "cors" sesion.

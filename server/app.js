@@ -5,6 +5,7 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const hbs = require("express-hbs");
+const cors = require("cors");
 
 const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
@@ -27,14 +28,21 @@ const app = express();
 //   console.log("The solution is: ", rows[0].clientes);
 // });
 
-mongoose.connect(
-  "mongodb+srv://" +
-    process.env.my +
-    ":" +
-    process.env.pass +
-    "@cluster0-ghxig.mongodb.net/test?retryWrites=true&w=majority",
-  { useUnifiedTopology: true, useNewUrlParser: true }
-);
+mongoose
+  .connect(
+    "mongodb+srv://" +
+      process.env.my +
+      ":" +
+      process.env.pass +
+      "@cluster0-ghxig.mongodb.net/test?retryWrites=true&w=majority",
+    { useUnifiedTopology: true, useNewUrlParser: true }
+  )
+  .then(() => {
+    console.log("Connect to MongoDB-Atlas");
+  })
+  .catch(() => {
+    console.log("Desconecct from MongoDB-Atlas");
+  });
 mongoose.Promise = global.Promise;
 
 app.use(logger("dev"));
@@ -42,7 +50,7 @@ app.use(logger("dev"));
 app.engine(
   "hbs",
   hbs.express4({
-    partialsDir: __dirname + "/views"
+    partialsDir: __dirname + "/views/"
   })
 );
 
@@ -57,7 +65,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //app.use("/images", express.static("images"));
-
+app.use(cors());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(

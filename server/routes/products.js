@@ -89,17 +89,17 @@ router.post(
   upload.single("productImage"),
   (req, res, next) => {
     const imagePath = req.file.path.slice(13);
-    console.log(imagePath);
     const product = new Product({
       _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
+      // destination: req.body.destination,
       price: req.body.price,
+      // quantity: req.body.quantity,
       productImage: imagePath
     });
     product
       .save()
       .then(result => {
-        console.log(result);
         res.status(201).json({
           message: "Product created with status: 201",
           createdProduct: {

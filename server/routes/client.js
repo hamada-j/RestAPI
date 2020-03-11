@@ -59,7 +59,7 @@ router.post("/login", (req, res, next) => {
         (err, result) => {
           if (err) {
             return res
-              .status(401)
+              .status(402)
               .json({ message: "Authentification failed 2" });
           }
 
@@ -74,13 +74,13 @@ router.post("/login", (req, res, next) => {
                 expiresIn: "1h"
               }
             );
-            res.render("index", { prod: allProducts });
+            // res.render("client/login", { text: "test" });
             return res.status(200).json({
               message: "Authentification is good",
               token: token
             });
           }
-          res.status(401).json({ message: "Authentification failed 3" });
+          res.status(406).json({ message: "Authentification failed 3" });
         }
       );
     })

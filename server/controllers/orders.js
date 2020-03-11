@@ -39,8 +39,10 @@ exports.orderPost = (req, res, next) => {
       }
       const order = new Order({
         _id: mongoose.Types.ObjectId(),
+        // quantity: req.body.quantity - Product.quantity,
         quantity: req.body.quantity,
         product: req.body.productId
+        //product: req.body.name ((((((aqui nombre))))))
       });
       return order.save();
     })
