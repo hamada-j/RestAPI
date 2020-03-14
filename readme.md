@@ -217,3 +217,5 @@ verification en both side of is verification valid to make a strict connection. 
 - JWT from `npm install jsonwebtoken --save` for "token" sesion.
   (https://jwt.io/)
 - CORS from `npm install cors --save` for "cors" sesion.
+
+### AUTHENTICATION
