@@ -3,6 +3,12 @@
 This is the final project of the Bootcam in NeoLand, carried out by Hamada.
 This part represents the BackEnd of the application, which will have two connections to: a relational database (SQL) MySQL and another non-relational one (noSQL) MongoDB-Atlas. And a render in the BackEnd-NodeJS with Hadlebars(HBS) a view for the administrator.
 
+### Repository and History
+
+- 1º Branch develop-> in GitHub from GitHub Desktop (https://github.com/hamada-j/), global company that provides hosting for software development version control using Git.
+- 2º Branch test-> in Circleci-Project(CircleCI build in https://app.circleci.com/pipelines/github/hamada-j/RestAPI) Docker Medium 2 CPU / 4 GB RAM(https://hub.docker.com/repository/docker/sh2020/hamada-j) every code change triggers automated tests in a clean container or VM. CircleCI then sends an email notification of success or failure after the tests complete.
+- 3º Branch master-> in Heroku-Master from Git (https://shrestapi.herokuapp.com/) is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
 ## REST-API
 
 REST-API are Statless Backends
