@@ -1,6 +1,6 @@
 ### BackEnd Side PROJECT
 
-This is the final project of the Bootcam in NeoLand, carried out by Hamada.
+This is the final project of the Bootcam in NeoLand, by Hamada.
 This part represents the BackEnd of the application, which will have two connections to: a relational database (SQL) MySQL and another non-relational one (noSQL) MongoDB-Atlas. And a render in the BackEnd-NodeJS with Hadlebars(HBS) a view for the administrator.
 
 ### Repository and History
