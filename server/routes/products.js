@@ -30,18 +30,20 @@ const upload = multer({
 
 const Product = require("../model/product");
 
-router.get("/views/partials", (req, res, next) => {
-  Product.find()
-    .select("name price _id productImage")
-    //.populate("product", "name")
-    .exec()
-    .then(allProducts => {
-      let image;
-      for (let i = 0; i < allProducts.length; i++) {
-        image = allProducts[i].productImage.slice(13);
-      }
-      res.render("partials/index", { prod: allProducts });
-    });
+router.get("/", (req, res, next) => {
+  // Product.find()
+  //   .select("name price _id productImage")
+  //   //.populate("product", "name")
+  //   .exec()
+  //   .then(allProducts => {
+  //     let image;
+  //     for (let i = 0; i < allProducts.length; i++) {
+  //       image = allProducts[i].productImage.slice(13);
+  //     }
+  //     console.log(allProducts);
+  //     res.render("product", { partials: "product" });
+  //   });
+  res.render("index", { layout: "index", template: "home" });
 });
 
 // GET Method

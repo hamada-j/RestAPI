@@ -8,6 +8,7 @@ const apiCustomersRouter = require("./api/customer");
 const apiSuppliersRouter = require("./api/supplier");
 
 const apiProductsRouter = require("./api/product");
+const apiInformationRouter = require("./api/information");
 
 const apiOrdersRouter = require("./api/order");
 const apiOrdersDetailsRouter = require("./api/ordersdetails");
@@ -34,5 +35,7 @@ router.use("/territorie", apiTerritorieRouter);
 router.use("/employee_territories", apiEmployeeTerritoriesRouter);
 router.use("/departament", apiDepartamentRouter);
 router.use("/category", apiCategoryRouter);
+
+router.use("/information", apiInformationRouter);
 
 module.exports = router;

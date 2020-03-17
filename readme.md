@@ -29,9 +29,13 @@ REST-API are Statless Backends
 
 ### /users(id) : GET, POST, PATCH, DELETE
 
-### /client(id) : GET, POST, PATCH, DELETE
+### /region(id) : GET, POST, PATCH, DELETE
 
-## Users
+### /territorie(id) : GET, POST, PATCH, DELETE
+
+### /supplier(id) : GET, POST, PATCH, DELETE
+
+## Employee
 
 ### /product(id) : GET, PATCH
 

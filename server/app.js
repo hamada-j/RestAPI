@@ -15,6 +15,8 @@ const productsRouter = require("./routes/products");
 const ordersRouter = require("./routes/orders");
 const clientRouter = require("./routes/client");
 
+//// Admin
+const adminRouter = require("./routes/admin");
 //// the App ////
 const app = express();
 
@@ -25,10 +27,13 @@ require("./mySqlDB").connect(err => {
   }
   console.log("Connect to MySql");
 });
-db.query("select * from customers", (err, rows) => {
-  console.log(err);
-  console.table(rows);
-});
+db.query(
+  "select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id ",
+  (err, rows) => {
+    console.log(err);
+    console.table(rows);
+  }
+);
 
 //// mongoAtlas Connection ////
 require("./mongoDB");
@@ -39,11 +44,14 @@ app.use(logger("dev"));
 app.engine(
   "hbs",
   hbs.express4({
-    partialsDir: __dirname + "/views/"
+    partialsDir: __dirname + "/views/partials",
+    layoutsDir: __dirname + "/views/layouts"
   })
 );
-app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+app.set("views", __dirname + "/views");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "hbs");
 
 //// Parsing Data ////
 app.use(express.json());
@@ -74,6 +82,7 @@ app.use("/api", apiRouter);
 app.use("/products", productsRouter);
 app.use("/orders", ordersRouter);
 app.use("/client", clientRouter);
+app.use("/admin", adminRouter);
 
 //// Catch Errors Server (General) ////
 app.use((req, res, next) => {

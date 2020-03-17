@@ -1,3 +1,34 @@
+const getAllInfo = () => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      "select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id ",
+      (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      }
+    );
+  });
+};
+
+const getProductbyDiscont = pDescunt => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      "select products.*, order_ord_prod.discunt from products, order_ord_prod where fk_product = products.id and order_ord_prod.discunt = ?",
+      [pDescunt],
+      (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      }
+    );
+  });
+};
+
 const getAll = () => {
   return new Promise((resolve, reject) => {
     db.query("select * from products", (err, rows) => {
@@ -117,5 +148,7 @@ module.exports = {
   getById: getById,
   create: create,
   deleteById: deleteById,
-  update: update
+  update: update,
+  getAllInfo: getAllInfo,
+  getProductbyDiscont: getProductbyDiscont
 };
