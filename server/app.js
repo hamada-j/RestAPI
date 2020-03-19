@@ -44,6 +44,7 @@ app.use(logger("dev"));
 app.engine(
   "hbs",
   hbs.express4({
+    defaultLayout: __dirname + "/views/layouts/layout",
     partialsDir: __dirname + "/views/partials",
     layoutsDir: __dirname + "/views/layouts"
   })

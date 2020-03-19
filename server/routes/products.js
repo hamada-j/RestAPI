@@ -43,7 +43,6 @@ router.get("/", (req, res, next) => {
   //     console.log(allProducts);
   //     res.render("product", { partials: "product" });
   //   });
-  res.render("index", { layout: "index", template: "home" });
 });
 
 // GET Method
