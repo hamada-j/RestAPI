@@ -27,13 +27,13 @@ require("./mySqlDB").connect(err => {
   }
   console.log("Connect to MySql");
 });
-db.query(
-  "select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id ",
-  (err, rows) => {
-    console.log(err);
-    console.table(rows);
-  }
-);
+// db.query(
+//   "select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id ",
+//   (err, rows) => {
+//     console.log(err);
+//     console.table(rows);
+//   }
+// );
 
 //// mongoAtlas Connection ////
 require("./mongoDB");
@@ -59,7 +59,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 //app.use("/images", express.static("images"));
 
 //// CORS & Headers ////
