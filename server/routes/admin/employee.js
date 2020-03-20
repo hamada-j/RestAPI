@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("employee");
+  res.render("employee", { layout: "admin_layout" });
 });
 
 module.exports = router;

@@ -17,7 +17,7 @@ router.use("/logout", logoutRouter);
 router.use("/products", productsRouter);
 router.use("/customers", customersRouter);
 router.use("/employee", employeeRouter);
-router.use("/orders", middleware, ordersRouter);
-router.use("/suppliers", middleware, suppliersRouter);
+router.use("/orders", ordersRouter);
+router.use("/suppliers", suppliersRouter);
 
 module.exports = router;

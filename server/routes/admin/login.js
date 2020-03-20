@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/login", (req, res, next) => {
-  console.log(req._startTime);
+  console.log(req.body);
   Admin.find({ email: req.body.email })
     .exec()
     .then(arrAdmin => {
@@ -31,7 +31,7 @@ router.post("/login", (req, res, next) => {
         }
 
         if (result) {
-          res.cookie("cookie_Admin", "cookie_Admin");
+          res.cookie("cookie_Admin", req.body.email);
           res.render("products");
         }
         req.flash("error", "This is a test notification.3");
