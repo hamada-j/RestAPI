@@ -1,11 +1,16 @@
 const express = require("express");
 const path = require("path");
+
 const cookieParser = require("cookie-parser");
+const flash = require("express-flash-messages");
+const session = require("express-session");
+
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const hbs = require("express-hbs");
 const cors = require("cors");
+const moment = require("moment");
 
 const indexRouter = require("./routes/index");
 //// mySql router  ////
@@ -20,6 +25,9 @@ const adminRouter = require("./routes/admin");
 //// the App ////
 const app = express();
 
+// Moment
+//console.log(moment());
+
 //// MySql Connection ////
 require("./mySqlDB").connect(err => {
   if (err) {
@@ -27,6 +35,7 @@ require("./mySqlDB").connect(err => {
   }
   console.log("Connect to MySql");
 });
+
 // db.query(
 //   "select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id ",
 //   (err, rows) => {
@@ -58,10 +67,18 @@ app.set("views", __dirname + "/views");
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 //app.use("/images", express.static("images"));
+
+app.use(cookieParser());
+// app.use(
+//   sessionStorage({
+//     secret: "secret1",
+//     saveUninitialized: true,
+//     resave: true
+//   })
+// );
+app.use(flash());
 
 //// CORS & Headers ////
 app.use(cors());
