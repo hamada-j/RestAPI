@@ -13,4 +13,8 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<h1>{{message}}</h1>
+{{#if messages.error}}
+<div class="entry">
+    <h1> {{messages.error}}</h1>
+</div>
+{{/if}}

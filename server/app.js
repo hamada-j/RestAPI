@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 
 const cookieParser = require("cookie-parser");
-const flash = require("express-flash-messages");
+// const flash = require("express-flash-messages");
+const flash = require("express-flash");
 const session = require("express-session");
 
 const logger = require("morgan");
@@ -67,17 +68,17 @@ app.set("views", __dirname + "/views");
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 //app.use("/images", express.static("images"));
 
-app.use(cookieParser());
-// app.use(
-//   sessionStorage({
-//     secret: "secret1",
-//     saveUninitialized: true,
-//     resave: true
-//   })
-// );
+app.use(
+  session({
+    secret: "This is my logng string for sessions http",
+    resave: false,
+    saveUninitialized: true
+  })
+);
 app.use(flash());
 
 //// CORS & Headers ////

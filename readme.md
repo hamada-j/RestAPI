@@ -229,3 +229,37 @@ verification en both side of is verification valid to make a strict connection. 
 - CORS from `npm install cors --save` for "cors" sesion.
 
 ### AUTHENTICATION
+
+### Fix later
+
+Token
+`$ npm install jwt`
+
+`$ npm install bycrpt`
+
+moment
+`$ npm install moment`
+
+cookie
+`$ npm install cookie-parser`
+npm install jwt-simple
+
+message
+`npm install --save express-flash`
+`npm install --save express-session`
+
+flash-messages No funciona
+`$ npm install express-flash-messages`
+
+```javascript
+app.use(
+  session({
+    secret: "This is my logng string for sessions http",
+    resave: false,
+    saveUninitialized: true
+  })
+);
+app.use(flash());
+```
+
+code in login.hs

@@ -1,7 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
-  background-color: red;
 }
 
 a {
@@ -270,4 +269,9 @@ input[type="text"]:placeholder {
 
 #icon {
   width: 60%;
+}
+
+.entry {
+  color: crimson;
+  margin: 1rem;
 }

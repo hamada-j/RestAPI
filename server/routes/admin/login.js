@@ -3,8 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const eFlash = require("express-flash-messages");
-const flash = eFlash();
+
+registerAction = require("../../middleware/log");
 const Admin = require("../../model/admin");
 
 router.get("/", (req, res) => {
@@ -19,40 +19,23 @@ router.post("/login", (req, res, next) => {
       if (arrAdmin.length < 1) {
         // return res.render("login", { message: "Authentification Failed" });
         // return res.status(401).json({ message: "Authentification failed 1" });
-        req.flash("notify", "This is a test notification.1");
-        // res.render("login");
+        req.flash("error", "This is a test notification.1");
+        return res.render("login");
       }
       bcrypt.compare(req.body.password, arrAdmin[0].password, (err, result) => {
         if (err) {
           // return res.render("login", { message: "Authentification Failed" });
           // return res.status(402).json({ message: "Authentification failed 2" });
-          req.flash("notify", "This is a test notification.2");
+          req.flash("error", "This is a test notification.2");
+          return res.render("login");
         }
 
         if (result) {
-          res.cookie(cookie_name, "cookie_value").send("Cookie is set");
-          // const token = jwt.sign(
-          //   {
-          //     adminId: arrAdmin[0]._id,
-          //     email: arrAdmin[0].email
-          //   },
-          //   process.env.jwt_key,
-          //   {
-          //     expiresIn: "1h"
-          //   }
-          // );
-          // redirigir al Dashboard
-          // console.log(token);
-          // res.render("product");
-          // res.redirect("/products");
-          // return res.status(200).json({
-          //   message: "Authentification is good",
-          //   token: token
-          // });
+          res.cookie("cookie_Admin", "cookie_Admin");
+          res.render("products");
         }
-        // res.render("login", { message: "Authentification Failed" });
-        // res.status(406).json({ message: "Authentification failed 3" });
-        req.flash("notify", "This is a test notification.3");
+        req.flash("error", "This is a test notification.3");
+        res.render("login");
       });
     })
     .catch(err => {
