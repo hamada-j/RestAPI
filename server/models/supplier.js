@@ -30,11 +30,11 @@ const getById = pSupplierId => {
   });
 };
 
-const create = ({ company, contact, address }) => {
+const create = ({ company, contact, address, fk_region }) => {
   return new Promise((resolve, reject) => {
     db.query(
-      "insert into suppliers (company, contact, address) values (?,?,?)",
-      [company, contact, address],
+      "insert into suppliers (company, contact, address, fk_region) values (?,?,?,?)",
+      [company, contact, address, fk_region],
       (err, result) => {
         if (err) {
           reject(err);

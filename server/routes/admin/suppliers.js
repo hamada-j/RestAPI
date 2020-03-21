@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("suppliers", { layout: "admin_layout" });
-});
-
 const Supplier = require("../../models/supplier");
 
 /* GET http://localhost:3000/admin/supplier/ */
@@ -23,7 +19,7 @@ router.get("/delete/:supplierId", (req, res, next) => {
     .then(async result => {
       console.log(result);
       try {
-        const rows = await Employee.getAll();
+        const rows = await Supplier.getAll();
         res.render("suppliers", { layout: "admin_layout", arrSuppliers: rows });
       } catch (err) {
         res.status(500).json(err);
@@ -40,7 +36,7 @@ router.get("/delete/:supplierId", (req, res, next) => {
 router.get("/edit/:supplierId", (req, res, next) => {
   Supplier.getById(req.params.supplierId)
     .then(supplierDB => {
-      res.render("suppliers", { layout: "admin_layout", employee: supplierDB });
+      res.render("suppliers", { layout: "admin_layout", supplier: supplierDB });
     })
     .catch(err => {
       res.status(500).json({
