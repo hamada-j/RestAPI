@@ -45,10 +45,7 @@ router.get("/:regionId", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const result = await Region.create({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
-      fk_region: req.body.fk_region
+      region: req.body.region
     });
     res.status(201).json(result);
   } catch (err) {
@@ -60,10 +57,7 @@ router.post("/", async (req, res, next) => {
 router.patch("/:pId", async (req, res, next) => {
   try {
     const result = await Region.update({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
-      fk_region: req.body.fk_region,
+      region: req.body.region,
       id: req.params.pId
     });
     res.status(201).json(result);

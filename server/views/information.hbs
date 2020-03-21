@@ -1,4 +1,51 @@
-<h2>Section title</h2>
-<div class="table-responsive">
-    <h1>From Information</h1>
-</div>
+<h2>All Info Table</h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Unit Stock</th>
+            <th scope="col">Unit on Order</th>
+            <th scope="col">Supplier Id</th>
+            <th scope="col">Category Id</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">Product Id</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Discont</th>
+            <th scope="col">Customer Id</th>
+            <th scope="col">Employee Id</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Require Date</th>
+            <th scope="col">Address</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each infoArr as |cust|}}
+        <tr>
+            <th scope="row">{{cust.id}}#</th>
+            <td>{{cust.id}}</td>
+            <td>{{cust.name}}</td>
+            <td>{{cust.unitprice}}</td>
+            <td>{{cust.unitstock}}</td>
+            <td>{{cust.unitonorder}}</td>
+            <td><a href="/admin/supplier/{{cust.fk_supplier}}">{{cust.fk_supplier}}</a></td>
+            <td><a href="/admin/category/{{cust.fk_category}}">{{cust.fk_category}}</a></td>
+            <td><a href="/admin/orders/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
+            <td><a href="/admin/products/{{fk_product}}">{{cust.fk_product}}</a></td>
+
+
+            <td>{{cust.quantity}}</td>
+            <td>{{cust.discunt}}</td>
+            <td><a href="/admin/customers/{{fk_customer}}">{{cust.fk_customer}}</a></td>
+            <td><a href="/admin/employees/{{fk_employee}}">{{fk_employee}}</a></td>
+            <td>{{cust.orderdate}}</td>
+            <td>{{cust.requiredate}}</td>
+            <td>{{cust.address}}</td>
+
+
+            {{/each}}
+    </tbody>
+</table>

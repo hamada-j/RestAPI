@@ -63,7 +63,7 @@ const getById = pProductsId => {
 
 const create = ({
   name,
-  image,
+  photo,
   unitprice,
   unitstock,
   unitonorder,
@@ -72,10 +72,10 @@ const create = ({
 }) => {
   return new Promise((resolve, reject) => {
     db.query(
-      "insert into products  (name, image, unitprice, unitstock, unitonorder, fk_supplier, fk_category) values (?,?,?,?,?,?,?)",
+      "insert into products  (name, photo, unitprice, unitstock, unitonorder, fk_supplier, fk_category) values (?,?,?,?,?,?,?)",
       [
         name,
-        image,
+        photo,
         unitprice,
         unitstock,
         unitonorder,
@@ -111,7 +111,7 @@ const deleteById = pProductId => {
 
 const update = ({
   name,
-  image,
+  photo,
   unitprice,
   unitstock,
   unitonorder,
@@ -121,10 +121,10 @@ const update = ({
 }) => {
   return new Promise((resolve, reject) => {
     db.query(
-      "UPDATE products SET name = ?, image = ?, unitprice = ?, unitstock = ?, unitonorder = ?, fk_supplier = ?, fk_category = ? WHERE id = ?",
+      "UPDATE products SET name = ?, photo = ?, unitprice = ?, unitstock = ?, unitonorder = ?, fk_supplier = ?, fk_category = ? WHERE id = ?",
       [
         name,
-        image,
+        photo,
         unitprice,
         unitstock,
         unitonorder,

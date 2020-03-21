@@ -45,9 +45,7 @@ router.get("/:terrId", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const result = await Territories.create({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
+      zona: req.body.zona,
       fk_region: req.body.fk_region
     });
     res.status(201).json(result);
@@ -60,9 +58,7 @@ router.post("/", async (req, res, next) => {
 router.patch("/:pId", async (req, res, next) => {
   try {
     const result = await Territories.update({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
+      zona: req.body.zona,
       fk_region: req.body.fk_region,
       id: req.params.pId
     });

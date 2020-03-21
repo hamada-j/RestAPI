@@ -45,10 +45,10 @@ router.get("/:departamentId", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const result = await Departament.create({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
-      fk_region: req.body.fk_region
+      name: req.body.name
+      // contact: req.body.contact,
+      // address: req.body.address,
+      // fk_region: req.body.fk_region
     });
     res.status(201).json(result);
   } catch (err) {
@@ -60,10 +60,7 @@ router.post("/", async (req, res, next) => {
 router.patch("/:pId", async (req, res, next) => {
   try {
     const result = await Departament.update({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
-      fk_region: req.body.fk_region,
+      name: req.body.name,
       id: req.params.pId
     });
     res.status(201).json(result);

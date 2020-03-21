@@ -46,8 +46,8 @@ router.post("/", async (req, res, next) => {
   try {
     const result = await Customer.create({
       name: req.body.name,
-      address: req.body.address
-      //fk_regionl: req.body.fk_region
+      address: req.body.address,
+      fk_region: req.body.fk_region
     });
     console.log(result);
     res.status(201).json(result);
@@ -62,7 +62,7 @@ router.patch("/:Id", async (req, res, next) => {
     const result = await Customer.update({
       name: req.body.name,
       address: req.body.address,
-      //fk_regionl: req.body.fk_region,
+      fk_region: req.body.fk_region,
       id: req.params.Id
     });
     res.status(201).json(result);

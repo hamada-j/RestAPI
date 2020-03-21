@@ -14,6 +14,7 @@ const regionsRouter = require("./admin/regions");
 const departamentRouter = require("./admin/departament");
 const informationRouter = require("./admin/information");
 const ordersdetailsRouter = require("./admin/ordersdetails");
+const dashboardRouter = require("./admin/dashboard");
 
 router.use("/login", loginRouter);
 router.use("/logout", logoutRouter);
@@ -27,5 +28,6 @@ router.use("/regions", regionsRouter);
 router.use("/departaments", departamentRouter);
 router.use("/information", informationRouter);
 router.use("/ordersdetails", ordersdetailsRouter);
+router.use("/dashboard", dashboardRouter);
 
 module.exports = router;

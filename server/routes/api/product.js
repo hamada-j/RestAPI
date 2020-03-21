@@ -45,7 +45,7 @@ router.post("/", async (req, res, next) => {
   try {
     const result = await Product.create({
       name: req.body.name,
-      image: req.body.image,
+      photo: req.body.photo,
       unitprice: req.body.unitprice,
       unitstock: req.body.unitstock,
       unitonorder: req.body.unitonorder,
@@ -64,7 +64,7 @@ router.patch("/:Id", async (req, res, next) => {
   try {
     const result = await Product.update({
       name: req.body.name,
-      image: req.body.image,
+      photo: req.body.photo,
       unitprice: req.body.unitprice,
       unitstock: req.body.unitstock,
       unitonorder: req.body.unitonorder,

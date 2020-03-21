@@ -34,7 +34,7 @@ const create = ({ name, address, fk_region }) => {
   return new Promise((resolve, reject) => {
     db.query(
       "insert into customers (name, address, fk_region) values (?,?,?)",
-      [name, address, orderdate, fk_region],
+      [name, address, fk_region],
       (err, result) => {
         if (err) {
           reject(err);

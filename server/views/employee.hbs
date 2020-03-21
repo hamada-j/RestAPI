@@ -1,4 +1,139 @@
-<h2>From Employee</h2>
-<div class="table-responsive">
-    <h1>From Employee</h1>
+<h2>Employees Of JS.io</h2>
+<div class="container">
+    <div class="row">
+        {{#each arrEmployee as |emp|}}
+        <div class="col-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{{emp.photo}}" class="card-img" alt="employee: {{emp.name}}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{emp.name}} {{emp.lastname}}</h5>
+                            <p class="card-text">Id: {{emp.id}}</p>
+                            <p class="card-text">Departamen: {{emp.fk_departamen}}</p>
+                            <p class="card-text">Birth date: {{emp.birthdate}}</p>
+                            <p class="card-text">Salary: {{emp.salary}}</p>
+                            <p class="card-text">Email: {{emp.email}}</p>
+                            <p class="card-text">Phone: {{emp.phone}}</p>
+                            <p class="card-text"><small class="text-muted"><a href="/admin/employee/edit/{{emp.id}}"
+                                        class="btn btn-sm btn-primary">Edit</a></small></p>
+                            <p class="card-text"><small class="text-muted"><a href="/admin/employee/delete/{{emp.id}}"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('¿are you ?')">Delete</a></small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 </div>
+
+
+
+
+
+<h2>Employee Form</h2>
+<form action="/admin/employee" method="POST" id="Form">
+    {{!-- <div class="form-group row">
+        <label for="id" class="col-sm-2 col-form-label">Employee Id</label>
+        <div class="col-sm-10">
+            <input name="id" type="text" class="form-control">
+        </div>
+    </div> --}}
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Employee Name</label>
+        <div class="col-sm-10">
+            <input name="name" type="text" class="form-control" value="{{employee.name}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="lastname" class="col-sm-2 col-form-label">Employee LastName</label>
+        <div class="col-sm-10">
+            <input name="lastname" type="text" class="form-control" value="{{employee.lastname}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Employee Email</label>
+        <div class="col-sm-10">
+            <input name="email" type="text" class="form-control" value="{{employee.email}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Employee Email-Password</label>
+        <div class="col-sm-10">
+            <input name="password" type="text" class="form-control" value="{{employee.password}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Employee Adress</label>
+        <div class="col-sm-10">
+            <input name="address" type="text" class="form-control" value="{{employee.address}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">Employee Phone</label>
+        <div class="col-sm-10">
+            <input name="phone" type="text" class="form-control" value="{{employee.phone}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="photo" class="col-sm-2 col-form-label">Employee Photo</label>
+        <div class="col-sm-10">
+            <input name="photo" type="text" class="form-control" value="{{employee.photo}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="birthdate" class="col-sm-2 col-form-label">Employee Birth Date</label>
+        <div class="col-sm-10">
+            <input name="birthdate" type="text" class="form-control" value="{{employee.birthdate}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="salary" class="col-sm-2 col-form-label">Employee Salary</label>
+        <div class="col-sm-10">
+            <input name="salary" type="text" class="form-control" value="{{employee.salary}}">
+        </div>
+    </div>
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Departamen</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input name="fk_departamen" class="form-check-input" type="radio" id="gridRadios1" value="1">
+                    <label class="form-check-label" for="gridRadios1">Developer
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input name="fk_departamen" class="form-check-input" type="radio" id="gridRadios2" value="2">
+                    <label class="form-check-label" for="gridRadios2">Production
+                    </label>
+                </div>
+                <div class="form-check ">
+                    <input name="fk_departamen" class="form-check-input" type="radio" id="gridRadios3" value="3">
+                    <label class="form-check-label" for="gridRadios3">Manager
+                    </label>
+                </div>
+                <div class="form-check ">
+                    <input name="fk_departamen" class="form-check-input" type="radio" id="gridRadios4" value="4">
+                    <label class="form-check-label" for="gridRadios3">Magazane
+                    </label>
+                </div>
+                <div class="form-check ">
+                    <input name="fk_departamen" class="form-check-input" type="radio" id="gridRadios5" value="5">
+                    <label class="form-check-label" for="gridRadios3">High-Tech
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>

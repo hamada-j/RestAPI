@@ -12,5 +12,5 @@ mongoose
     console.log("Connect to MongoDB-Atlas");
   })
   .catch(() => {
-    console.log("Desconecct from MongoDB-Atlas");
+    console.log("DesConnect from MongoDB-Atlas");
   });

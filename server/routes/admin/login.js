@@ -31,8 +31,9 @@ router.post("/login", (req, res, next) => {
         }
 
         if (result) {
+          console.log(result);
           res.cookie("cookie_Admin", req.body.email);
-          res.render("products");
+          res.render("dashboard", { layout: "admin_layout" });
         }
         req.flash("error", "This is a test notification.3");
         res.render("login");

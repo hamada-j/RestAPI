@@ -7,6 +7,7 @@ const Customer = require("../../models/customer");
 //   res.render("customers", { layout: "admin_layout" });
 // });
 
+/* GET http://localhost:3000/admin/customer/ */
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Customer.getAll();
@@ -15,19 +16,18 @@ router.get("/", async (req, res, next) => {
     res.status(500).json(err);
   }
 });
-router.get("/", (req, res, next) => {
-  Customer.getAll((err, productos) => {
-    if (err) return res.json(err);
-    res.render("customers", { arrCustomers: productos });
-  });
-});
 
-/* DELETE http://localhost:3000/api/customer/Id */
-router.delete("/delete/:customerId", (req, res, next) => {
+/* GET(delete) http://localhost:3000/admin/customer/Id */
+router.get("/delete/:customerId", (req, res, next) => {
   Customer.deleteById(req.params.customerId)
-    .then(result => {
+    .then(async result => {
       console.log(result);
-      res.status(201).send("Order Customer");
+      try {
+        const rows = await Customer.getAll();
+        res.render("customers", { layout: "admin_layout", arrCustomers: rows });
+      } catch (err) {
+        res.status(500).json(err);
+      }
     })
     .catch(err => {
       res.status(500).json({
@@ -36,7 +36,7 @@ router.delete("/delete/:customerId", (req, res, next) => {
     });
 });
 
-/* GET http://localhost:3000/api/customer/Id */
+/* GET http://localhost:3000/admin/customer/Id */
 router.get("/:customerId", (req, res, next) => {
   Customer.getById(req.params.customerId)
     .then(customerDB => {
@@ -50,29 +50,34 @@ router.get("/:customerId", (req, res, next) => {
     });
 });
 
-/* POST http://localhost:3000/api/customer */
+/*POST http://localhost:3000/admin/customer/ */
 router.post("/", async (req, res, next) => {
-  // console.log(req.body);
+  console.log(req.body);
   try {
     const result = await Customer.create({
       name: req.body.name,
-      address: req.body.address
-      //fk_regionl: req.body.fk_region
+      address: req.body.address,
+      fk_region: req.body.fk_region
     });
     console.log(result);
-    res.status(201).json(result);
+    try {
+      const rows = await Customer.getAll();
+      res.render("customers", { layout: "admin_layout", arrCustomers: rows });
+    } catch (err) {
+      res.status(500).json(err);
+    }
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-/* PATCH http://localhost:3000/api/customer/ID*/
+/* PATCH http://localhost:3000/admin/customer/ID*/
 router.patch("/:Id", async (req, res, next) => {
   try {
     const result = await Customer.update({
       name: req.body.name,
       address: req.body.address,
-      //fk_regionl: req.body.fk_region,
+      fk_region: req.body.fk_region,
       id: req.params.Id
     });
     res.status(201).json(result);
