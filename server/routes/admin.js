@@ -10,6 +10,10 @@ const customersRouter = require("./admin/customers");
 const employeeRouter = require("./admin/employee");
 const ordersRouter = require("./admin/orders");
 const suppliersRouter = require("./admin/suppliers");
+const regionsRouter = require("./admin/regions");
+const departamentRouter = require("./admin/departament");
+const informationRouter = require("./admin/information");
+const ordersdetailsRouter = require("./admin/ordersdetails");
 
 router.use("/login", loginRouter);
 router.use("/logout", logoutRouter);
@@ -19,5 +23,9 @@ router.use("/customers", customersRouter);
 router.use("/employee", employeeRouter);
 router.use("/orders", ordersRouter);
 router.use("/suppliers", suppliersRouter);
+router.use("/regions", regionsRouter);
+router.use("/departaments", departamentRouter);
+router.use("/information", informationRouter);
+router.use("/ordersdetails", ordersdetailsRouter);
 
 module.exports = router;

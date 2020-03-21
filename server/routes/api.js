@@ -1,7 +1,5 @@
 const router = require("express").Router();
 
-const apiAdminRouter = require("./api/admin");
-
 const apiEmployeesRouter = require("./api/employee");
 
 const apiCustomersRouter = require("./api/customer");
@@ -21,7 +19,6 @@ const apiEmployeeTerritoriesRouter = require("./api/employee_territories");
 const apiDepartamentRouter = require("./api/departament");
 const apiCategoryRouter = require("./api/category");
 
-router.use("/admin", apiAdminRouter);
 router.use("/employee", apiEmployeesRouter);
 router.use("/customer", apiCustomersRouter);
 router.use("/supplier", apiSuppliersRouter);

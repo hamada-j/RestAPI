@@ -3,22 +3,27 @@ const router = express.Router();
 
 const Customer = require("../../models/customer");
 
-router.get("/", (req, res) => {
-  res.render("customers", { layout: "admin_layout" });
-});
+// router.get("/", (req, res) => {
+//   res.render("customers", { layout: "admin_layout" });
+// });
 
-/* GET http://localhost:3000/api/customer */
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Customer.getAll();
-    res.render("customers", { layout: "admin_layout" }, { arrCustomers: rows });
+    res.render("customers", { layout: "admin_layout", arrCustomers: rows });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+router.get("/", (req, res, next) => {
+  Customer.getAll((err, productos) => {
+    if (err) return res.json(err);
+    res.render("customers", { arrCustomers: productos });
+  });
+});
 
 /* DELETE http://localhost:3000/api/customer/Id */
-router.delete("/:customerId", (req, res, next) => {
+router.delete("/delete/:customerId", (req, res, next) => {
   Customer.deleteById(req.params.customerId)
     .then(result => {
       console.log(result);
@@ -34,8 +39,9 @@ router.delete("/:customerId", (req, res, next) => {
 /* GET http://localhost:3000/api/customer/Id */
 router.get("/:customerId", (req, res, next) => {
   Customer.getById(req.params.customerId)
-    .then(customer => {
-      res.status(201).send(customer);
+    .then(customerDB => {
+      console.log(customerDB);
+      res.render("customers", { layout: "admin_layout", customer: customerDB });
     })
     .catch(err => {
       res.status(500).json({
