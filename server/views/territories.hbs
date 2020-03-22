@@ -1,3 +1,50 @@
+<h2>Territories-Regions</h2>
+<div id="mytertiarychart" style="height: 250px;"></div>
+<script>
+    fetch('http://localhost:3000/api/territorie')
+        .then((response) => {
+            console.log(response)
+            return response.json();
+        })
+        .then((dataDB) => {
+            console.log(dataDB);
+            new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'mytertiarychart',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: dataDB,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'id',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['id', 'fk_region'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                labels: ['Region', 'Territorie'],
+                lineColors: ['#343a40', '#20c997'],
+                lineWidth: 1
+            }).on('click', function (i, row) {
+                console.log(i, row)
+                let algo = document.getElementById('algo')
+                algo.innerText = i
+            });
+
+        });
+
+    function ajax() {
+        const http = new XMLHttpRequest();
+        const url = 'http://localhost:3000/api/orderdetails/';
+        http.onreadystatechange = function () {
+            //if (this.readyState == 4 && this.status == 201) {
+            console.log(this.responseText)
+            //}
+            http.open('GET', url);
+            http.send()
+        }
+    };
+
+</script>
+<hr>
 <h2>Territories of JS.io</h2>
 <hr>
 <div class="container">
