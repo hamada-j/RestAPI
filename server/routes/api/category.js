@@ -45,10 +45,8 @@ router.get("/:categoryId", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const result = await Category.create({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
-      fk_region: req.body.fk_region
+      name: req.body.name,
+      description: req.body.description
     });
     res.status(201).json(result);
   } catch (err) {
@@ -60,10 +58,8 @@ router.post("/", async (req, res, next) => {
 router.patch("/:pId", async (req, res, next) => {
   try {
     const result = await Category.update({
-      company: req.body.company,
-      contact: req.body.contact,
-      address: req.body.address,
-      fk_region: req.body.fk_region,
+      name: req.body.name,
+      description: req.body.description,
       id: req.params.pId
     });
     res.status(201).json(result);

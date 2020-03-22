@@ -31,16 +31,16 @@
             <td>{{cust.unitprice}}</td>
             <td>{{cust.unitstock}}</td>
             <td>{{cust.unitonorder}}</td>
-            <td><a href="/admin/supplier/{{cust.fk_supplier}}">{{cust.fk_supplier}}</a></td>
-            <td><a href="/admin/category/{{cust.fk_category}}">{{cust.fk_category}}</a></td>
-            <td><a href="/admin/orders/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
-            <td><a href="/admin/products/{{fk_product}}">{{cust.fk_product}}</a></td>
+            <td><a href="/admin/suppliers/edit/{{cust.fk_supplier}}">{{cust.fk_supplier}}</a></td>
+            <td><a href="/admin/category/edit/{{cust.fk_category}}">{{cust.fk_category}}</a></td>
+            <td><a href="/admin/orders/see/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
+            <td><a href="/admin/products/edit/{{fk_product}}">{{cust.fk_product}}</a></td>
 
 
             <td>{{cust.quantity}}</td>
             <td>{{cust.discunt}}</td>
             <td><a href="/admin/customers/{{fk_customer}}">{{cust.fk_customer}}</a></td>
-            <td><a href="/admin/employees/{{fk_employee}}">{{fk_employee}}</a></td>
+            <td><a href="/admin/employee/edit/{{fk_employee}}">{{fk_employee}}</a></td>
             <td>{{cust.orderdate}}</td>
             <td>{{cust.requiredate}}</td>
             <td>{{cust.address}}</td>

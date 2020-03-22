@@ -18,7 +18,7 @@
             <th scope="row">{{cust.id}}#</th>
             <td>{{cust.id}}</td>
             <td><a href="/admin/orders/see/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
-            <td><a href="/admin/products/{{cust.fk_product}}">{{cust.fk_product}}</a></td>
+            <td><a href="/admin/products/edit/{{cust.fk_product}}">{{cust.fk_product}}</a></td>
             <td>{{cust.quantity}}</td>
             <td>{{cust.discunt}}</td>
             <td><a href="/admin/ordersdetails/see/{{cust.id}}" class="btn btn-sm btn-primary">See</a></td>
@@ -48,11 +48,11 @@
         <tr>
             <th scope="row">{{element.id}}#</th>
             <td>{{element.id}}</td>
-            <td><a href="/admin/orders/{{element.fk_orders}}">{{element.fk_orders}}</a></td>
-            <td><a href="/admin/fk_product/{{element.fk_product}}">{{element.fk_product}}</a></td>
+            <td><a href="/admin/orders/see/{{element.fk_orders}}">{{element.fk_orders}}</a></td>
+            <td><a href="/admin/products/edit/{{element.fk_product}}">{{element.fk_product}}</a></td>
             <td>{{element.quantity}}</td>
             <td>{{element.discunt}}</td>
-            <td><a href="/admin/ordersdetails/edit/{{element.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/ordersdetails/edit/see/{{element.id}}" class="btn btn-sm btn-primary">Edit</a></td>
             <td><a href="/admin/ordersdetails/delete/{{element.id}}" class="btn btn-sm btn-danger"
                     onclick="return confirm('¿are you ?')">Delete</a></td>
             <td><a href="/admin/ordersdetails" class="btn btn-sm btn-primary">All Orders-Details</a></td>

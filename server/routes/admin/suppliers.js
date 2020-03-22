@@ -44,6 +44,21 @@ router.get("/edit/:supplierId", (req, res, next) => {
       });
     });
 });
+/* GET http://localhost:3000/admin/supplier/Id */
+router.get("/see/:pId", (req, res, next) => {
+  Supplier.getById(req.params.pId)
+    .then(supp => {
+      res.render("suppliers", {
+        layout: "admin_layout",
+        supplier: supp
+      });
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 /*POST http://localhost:3000/admin/supplier/ */
 router.post("/", async (req, res, next) => {
