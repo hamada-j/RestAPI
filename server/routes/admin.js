@@ -10,6 +10,7 @@ const resetRouter = require("./admin/reset");
 const searchRouter = require("./admin/search");
 
 const productsRouter = require("./admin/products");
+const discountRouter = require("./admin/discount");
 const customersRouter = require("./admin/customers");
 const employeeRouter = require("./admin/employee");
 const ordersRouter = require("./admin/orders");
@@ -30,6 +31,7 @@ router.use("/reset", resetRouter);
 router.use("/search", searchRouter);
 
 router.use("/products", productsRouter);
+router.use("/discount", discountRouter);
 router.use("/customers", customersRouter);
 router.use("/employee", employeeRouter);
 router.use("/orders", ordersRouter);

@@ -1,4 +1,39 @@
+<h2>Products and Orders</h2>
+<div id="mytertiarychart" style="height: 250px;"></div>
+<p style="text-align: center;" id="algo"></p>
+<script>
+    new Morris.Area({
+        // ID of the element in which to draw the chart.
+        element: 'mytertiarychart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: [
+            { x: '2014 Q4', y: 3, z: 7 },
+            { x: '2015 Q1', y: 3, z: 4 },
+            { x: '2016 Q2', y: 1, z: 0 },
+            { x: '2017 Q3', y: 2, z: 5 },
+            { x: '2018 Q4', y: 8, z: 2 },
+            { x: '2019 Q1', y: 4, z: 2 },
+            { x: '2020 Q4', y: 2, z: 4 }
+        ],
+        // The name of the data record attribute that contains x-values.
+        xkey: 'x',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['y', 'z'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Products', 'Ordres'],
+        lineColors: ['#fd7e14', '#17a2b8'],
+        lineWidth: 1
+    }).on('click', function (i, row) {
+        console.log(i, row)
+        let algo = document.getElementById('algo')
+        algo.innerText = i
+    });
+</script>
+
 <h2>Info Of Table Orders-Details</h2>
+<hr>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -29,7 +64,7 @@
         {{/each}}
     </tbody>
 </table>
-
+<hr>
 <h2>Info Orders-Details</h2>
 <table class="table table-dark">
     <thead>
@@ -59,7 +94,7 @@
         </tr>
     </tbody>
 </table>
-
+<hr>
 <h2>Orders-Details Form</h2>
 <form action="/admin/customers" method="POST" id="Form">
     <div class="form-group row">
@@ -94,3 +129,4 @@
         </div>
     </div>
 </form>
+<hr>

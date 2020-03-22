@@ -1,3 +1,12 @@
+<h2>Search Of Products Discount</h2>
+<hr>
+<form action="/admin/discount/" method="POST">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Discount</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="discount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 <h2>All Info Table</h2>
 <hr>
 <table class="table table-dark">
@@ -11,16 +20,8 @@
             <th scope="col">Unit on Order</th>
             <th scope="col">Supplier Id</th>
             <th scope="col">Category Id</th>
-            <th scope="col">Order Id</th>
-            <th scope="col">Product Id</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Discont</th>
-            <th scope="col">Customer Id</th>
-            <th scope="col">Employee Id</th>
-            <th scope="col">Order Date</th>
-            <th scope="col">Require Date</th>
-            <th scope="col">Address</th>
-
+            <th scope="col">Discount</th>
+            <th scope="col">photo</th>
         </tr>
     </thead>
     <tbody>
@@ -36,17 +37,13 @@
             <td><a href="/admin/category/edit/{{cust.fk_category}}">{{cust.fk_category}}</a></td>
             <td><a href="/admin/orders/see/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
             <td><a href="/admin/products/edit/{{fk_product}}">{{cust.fk_product}}</a></td>
-
-
-            <td>{{cust.quantity}}</td>
             <td>{{cust.discunt}}</td>
+            <td><img src="{{cust.photo}}" alt=""></td>
             <td><a href="/admin/customers/{{fk_customer}}">{{cust.fk_customer}}</a></td>
             <td><a href="/admin/employee/edit/{{fk_employee}}">{{fk_employee}}</a></td>
             <td>{{cust.orderdate}}</td>
             <td>{{cust.requiredate}}</td>
             <td>{{cust.address}}</td>
-
-
             {{/each}}
     </tbody>
 </table>

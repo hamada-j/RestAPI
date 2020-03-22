@@ -11,6 +11,7 @@ router.get("/", async (req, res, next) => {
     res.status(500).json(err);
   }
 });
+
 /* GET http://localhost:3000/api/information/pDiscont */
 router.get("/:pDicunt", (req, res, next) => {
   Product.getProductbyDiscont(req.params.pDicunt)

@@ -52,14 +52,16 @@ router.post("/signup", (req, res, next) => {
     .exec()
     .then(admin => {
       if (admin.length >= 1) {
-        return res.status(422).json({
-          message: "email already exist in DB"
+        return res.render("admin", {
+          layout: "admin_layout",
+          response: "Exist in DB"
         });
       } else {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {
-            return res.status(500).json({
-              error: err
+            return res.render("admin", {
+              layout: "admin_layout",
+              response: "Exist in DB"
             });
           } else {
             const admin = new Admin({
@@ -71,14 +73,16 @@ router.post("/signup", (req, res, next) => {
               .save()
               .then(result => {
                 console.log(result);
-                res.status(201).json({
-                  message: "Admin signup"
+                res.render("admin", {
+                  layout: "admin_layout",
+                  response: result
                 });
               })
               .catch(err => {
                 console.log(err);
-                res.status(500).json({
-                  error: err
+                res.render("admin", {
+                  layout: "admin_layout",
+                  response: err
                 });
               });
           }

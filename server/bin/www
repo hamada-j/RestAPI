@@ -21,7 +21,41 @@ app.set("port", port);
 
 const server = http.createServer(app);
 
+///
+// const server = http.createServer(app);
+// let io = require("socket.io")(server);
+
+// io.on("connection", socket => {
+//   io.emit("chat_users", io.engine.clientsCount);
+//   // console.log("se ha conectado un nuevo cliente");
+//   socket.broadcast.emit("chat_message", {
+//     username: "INFO",
+//     message: "se ha conectado uno mas"
+//   });
+
+//   socket.on("chat_message", data => {
+//     // console.log(data);
+//     io.emit("chat_message", data);
+//   });
+//   socket.on("disconnect", () => {
+//     io.emit("chat_users", io.engine.clientsCount);
+//     socket.broadcast.emit("chat_message", {
+//       username: "INFO",
+//       message: "se ha desconecatado uno mas"
+//     });
+//   });
+// });
 /**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * Listen on provided port, on all network interfaces.
  */
 
