@@ -3,9 +3,9 @@
 <form action="/admin/discount/" method="POST">
     <div class="form-group">
         <label for="exampleFormControlInput1">Discount</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="discount">
+        <input type="text" class="form-control" id="input" placeholder="discount">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" id="button" class="btn btn-primary">Submit</button>
 </form>
 <h2>All Info Table</h2>
 <hr>
@@ -38,7 +38,7 @@
             <td><a href="/admin/orders/see/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
             <td><a href="/admin/products/edit/{{fk_product}}">{{cust.fk_product}}</a></td>
             <td>{{cust.discunt}}</td>
-            <td><img src="{{cust.photo}}" alt=""></td>
+            <td class="imagenDiscout"><img src="{{cust.photo}}" alt=""></td>
             <td><a href="/admin/customers/{{fk_customer}}">{{cust.fk_customer}}</a></td>
             <td><a href="/admin/employee/edit/{{fk_employee}}">{{fk_employee}}</a></td>
             <td>{{cust.orderdate}}</td>
@@ -48,3 +48,13 @@
     </tbody>
 </table>
 <hr>
+
+<script>
+    let button = document.querySelector('#button');
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+        let text = document.querySelector('#input').value;
+        console.log(text)
+        window.location = '/admin/discount/' + text;
+    });
+</script>

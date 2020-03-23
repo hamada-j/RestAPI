@@ -393,3 +393,12 @@ input[type="text"]:placeholder {
 .card-img {
   height: 100%;
 }
+
+.imagenDiscout {
+  max-width: 250px;
+}
+.imagenDiscout img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

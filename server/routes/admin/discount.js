@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
 });
 
 /* GET http://localhost:3000/admin/discount/pDiscont */
-router.post("/:pDiscount", (req, res, next) => {
+router.get("/:pDiscount", (req, res, next) => {
   console.log(req.params.pDiscount);
   Product.getProductbyDiscont(req.params.pDiscount)
     .then(producDiscunt => {

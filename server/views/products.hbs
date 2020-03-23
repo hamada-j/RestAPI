@@ -1,4 +1,4 @@
-<h2>Territories-Regions</h2>
+<h2>Chart of Product in JS.io</h2>
 <div id="mytertiarychart" style="height: 250px;"></div>
 <script>
     fetch('http://localhost:3000/api/product/')
@@ -9,9 +9,7 @@
         .then((dataDB) => {
             console.log(dataDB);
             new Morris.Area({
-                // ID of the element in which to draw the chart.
                 element: 'mytertiarychart',
-                // Chart data records -- each entry in this array corresponds to a point on
                 // the chart.
                 data: dataDB,
                 // The name of the data record attribute that contains x-values.
