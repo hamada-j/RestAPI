@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Admin = require("../../model/admin");
 
+const logs = require("../../controllers/register");
 // GET Method
 router.get("/", (req, res, next) => {
   Admin.find()

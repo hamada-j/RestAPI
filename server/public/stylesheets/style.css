@@ -381,7 +381,7 @@ input[type="text"]:placeholder {
 }
 
 #icon {
-  width: 60%;
+  width: 100%;
 }
 
 .login-control {
@@ -398,6 +398,15 @@ input[type="text"]:placeholder {
   max-width: 250px;
 }
 .imagenDiscout img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.logo {
+  max-width: 90px;
+}
+img {
   width: 100%;
   height: auto;
   display: block;
