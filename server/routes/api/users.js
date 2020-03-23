@@ -64,7 +64,7 @@ const createToken = pUser => {
       .add(15, "minutes")
       .unix()
   };
-  return jwt.encode(payload, process.env.TOKEN);
+  return jwt.encode(payload, "token");
 };
 
 module.exports = router;
