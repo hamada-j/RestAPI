@@ -13,6 +13,22 @@ const getAllInfo = () => {
   });
 };
 
+const getAllInfoId = pId => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      " select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id = ?",
+      [pId],
+      (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      }
+    );
+  });
+};
+
 const getProductbyDiscont = pDescunt => {
   return new Promise((resolve, reject) => {
     db.query(
@@ -150,5 +166,6 @@ module.exports = {
   deleteById: deleteById,
   update: update,
   getAllInfo: getAllInfo,
-  getProductbyDiscont: getProductbyDiscont
+  getProductbyDiscont: getProductbyDiscont,
+  getAllInfoId: getAllInfoId
 };

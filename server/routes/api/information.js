@@ -13,10 +13,10 @@ router.get("/", async (req, res, next) => {
 });
 
 /* GET http://localhost:3000/api/information/pDiscont */
-router.get("/:pDicunt", (req, res, next) => {
-  Product.getProductbyDiscont(req.params.pDicunt)
-    .then(producDiscunt => {
-      res.status(201).send(producDiscunt);
+router.get("/:pId", (req, res, next) => {
+  Product.getAllInfoId(req.params.pId)
+    .then(prodId => {
+      res.status(201).send(prodId);
     })
     .catch(err => {
       res.status(500).json({
@@ -24,5 +24,18 @@ router.get("/:pDicunt", (req, res, next) => {
       });
     });
 });
+
+// /* GET http://localhost:3000/api/information/pDiscont */
+// router.get("/:pDicunt", (req, res, next) => {
+//   Product.getProductbyDiscont(req.params.pDicunt)
+//     .then(producDiscunt => {
+//       res.status(201).send(producDiscunt);
+//     })
+//     .catch(err => {
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// });
 
 module.exports = router;

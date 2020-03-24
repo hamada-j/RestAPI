@@ -20,6 +20,7 @@ const apiRouter = require("./routes/api");
 const productsRouter = require("./routes/products");
 const ordersRouter = require("./routes/orders");
 const clientRouter = require("./routes/client");
+const postsRouter = require("./routes/posts");
 
 //// Admin
 const adminRouter = require("./routes/admin");
@@ -102,6 +103,7 @@ app.use("/api", apiRouter);
 app.use("/products", productsRouter);
 app.use("/orders", ordersRouter);
 app.use("/client", clientRouter);
+app.use("/api/posts", postsRouter);
 app.use("/admin", adminRouter);
 
 //// Catch Errors Server (General) ////
