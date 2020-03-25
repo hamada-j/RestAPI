@@ -75,5 +75,22 @@ router.post(
       });
   }
 );
+router.delete("/delete/:postId", (req, res, next) => {
+  const id = req.params.postId;
+  console.log(id);
+  Post.remove({ _id: id })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Post is Deleted"
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 module.exports = router;

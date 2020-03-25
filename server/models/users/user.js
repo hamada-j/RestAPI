@@ -1,8 +1,8 @@
-const create = ({ username, email, password }) => {
+const create = ({ employeeNum, email, password }) => {
   return new Promise((resolve, reject) => {
     db.query(
-      "insert into users (username, email, password) values (?,?,?)",
-      [username, email, password],
+      "insert into users (employeeNum, email, password) values (?,?,?)",
+      [employeeNum, email, password],
       (err, result) => {
         if (err) reject(err);
         resolve(result);

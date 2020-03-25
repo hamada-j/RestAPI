@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+var async = require("async-waterfall");
 
 /* GET http://localhost:3000/admin/region&territories */
 router.get("/", (req, res, next) => {
   console.log(req.body);
   res.render("forgotPassword");
 });
+
 router.post("/forgot", function(req, res, next) {
   async.waterfall(
     [
@@ -18,7 +20,7 @@ router.post("/forgot", function(req, res, next) {
       function(token, done) {
         User.findOne({ email: req.body.email }, function(err, user) {
           if (!user) {
-            //   console.log('error', 'No account with that email address exists.');
+            console.log("error", "No account with that email address exists.");
             req.flash("error", "No account with that email address exists.");
             return res.redirect("/forgot");
           }

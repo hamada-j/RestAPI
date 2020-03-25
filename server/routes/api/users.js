@@ -10,13 +10,13 @@ const User = require("../../models/users/user");
 router.post(
   "/register",
   [
-    check("username", "el nombre de usario de 3 a 10 valores")
+    check("employeeNum", "EmployeeNumde should have 3 a 10 values")
       .isLength({ min: 3, max: 10 })
       .isAlphanumeric(),
-    check("email", "el email debe ser correcto")
+    check("email", "most be correct one")
       .normalizeEmail()
       .isEmail(),
-    check("password", "de 4 a 8 digitos")
+    check("password", "beetwen 4 and 8 values")
       .exists()
       .custom(value => {
         return /^(?=.*\d).{4,8}$/.test(value);
@@ -31,6 +31,7 @@ router.post(
     req.body.password = passwordEnc;
     try {
       const result = await User.create(req.body);
+      console.log(result);
       res.status(201).json(result);
     } catch (err) {
       console.log(err);
@@ -42,14 +43,14 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.emailExists(req.body.email);
     if (!user) {
-      res.status(401).json({ error: "error en email y/o password" });
+      res.status(401).json({ error: "Error in email or password." });
     }
     // console.log(req.body.password, user.password);
     const iguales = bcrypt.compareSync(req.body.password, user.password);
     if (iguales) {
       res.status(201).json({ success: createToken(user) });
     } else {
-      res.status(401).json({ error: "error en email y/o password" });
+      res.status(401).json({ error: "Error en email or password" });
     }
   } catch (err) {
     console.log(err);
