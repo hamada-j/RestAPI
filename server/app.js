@@ -1,56 +1,49 @@
 const express = require("express");
 const path = require("path");
-
 const cookieParser = require("cookie-parser");
-// const flash = require("express-flash-messages");
 const flash = require("express-flash");
 const session = require("express-session");
-
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const hbs = require("express-hbs");
 const cors = require("cors");
 const moment = require("moment");
-
 const indexRouter = require("./routes/index");
-//// mySql router  ////
+/** ==========================================
+ 
+                  ROUTING
+ 
+==========================================**/
 const apiRouter = require("./routes/api");
-//// Atlas router ////
 const productsRouter = require("./routes/products");
 const ordersRouter = require("./routes/orders");
 const clientRouter = require("./routes/client");
 const postsRouter = require("./routes/posts");
-
-//// Admin
 const adminRouter = require("./routes/admin");
-//// the App ////
+//////////////////NO TOUCH/////////////////////
 const app = express();
+/** ==========================================
 
-// Moment
-//console.log(moment());
-
-//// MySql Connection ////
+            DATA BASE:
+          -MySQL - LOCAL
+          -MONGO DB - ATLAS
+ 
+==========================================**/
 require("./mySqlDB").connect(err => {
   if (err) {
     throw err;
   }
   console.log("Connect to MySql");
 });
-
-// db.query(
-//   "select products.*, order_ord_prod.*, orders.* from order_ord_prod inner join products on order_ord_prod.fk_product = products.id inner join orders on order_ord_prod.fk_orders = orders.id where products.id ",
-//   (err, rows) => {
-//     console.log(err);
-//     console.table(rows);
-//   }
-// );
-
-//// mongoAtlas Connection ////
 require("./mongoDB");
 mongoose.Promise = global.Promise;
+/** ==========================================
 
-//// Views Handlebar ////
+            VIES ENGINE:
+             Handlebars
+          
+==========================================**/
 app.use(logger("dev"));
 app.engine(
   "hbs",
@@ -62,17 +55,16 @@ app.engine(
 );
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "hbs");
+/** ==========================================
 
-//// Parsing Data ////
+       PARSING---PUBLIC---SESSION---FLASH       
+          
+==========================================**/
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-//app.use("/images", express.static("images"));
-
 app.use(
   session({
     secret: "This is my logng string for sessions http",
@@ -81,8 +73,11 @@ app.use(
   })
 );
 app.use(flash());
+/** ==========================================
 
-//// CORS & Headers ////
+              HEADERS --- CORS      
+          
+==========================================**/
 app.use(cors());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -96,8 +91,11 @@ app.use((req, res, next) => {
   }
   next();
 });
+/** ==========================================
 
-//// Router ////
+                ALL ROUTES    
+          
+==========================================**/
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
 app.use("/products", productsRouter);
@@ -105,8 +103,11 @@ app.use("/orders", ordersRouter);
 app.use("/client", clientRouter);
 app.use("/api/posts", postsRouter);
 app.use("/admin", adminRouter);
+/** ==========================================
 
-//// Catch Errors Server (General) ////
+              GENERAL & ERRORS      
+          
+==========================================**/
 app.use((req, res, next) => {
   const error = new Error("Not Found, I creat this message");
   error.status = 404;

@@ -4,7 +4,7 @@ const Admin = require("../../model/admin");
 
 const logs = require("../../controllers/register");
 // GET Method
-router.get("/", (req, res, next) => {
+router.get("/", logs.registerAction, (req, res, next) => {
   Admin.find()
     .select("_id email password")
     //.populate("product", "name")

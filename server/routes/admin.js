@@ -8,7 +8,6 @@ const logoutRouter = require("./admin/logout");
 const forgotRouter = require("./admin/forgotPassword");
 const resetRouter = require("./admin/reset");
 const searchRouter = require("./admin/search");
-
 const productsRouter = require("./admin/products");
 const discountRouter = require("./admin/discount");
 const customersRouter = require("./admin/customers");
@@ -22,6 +21,7 @@ const categoryRouter = require("./admin/catagory");
 const informationRouter = require("./admin/information");
 const ordersdetailsRouter = require("./admin/ordersdetails");
 const dashboardRouter = require("./admin/dashboard");
+const socialRouter = require("./admin/social");
 
 router.use("/admin", adminRouter);
 router.use("/login", loginRouter);
@@ -29,7 +29,6 @@ router.use("/logout", logoutRouter);
 router.use("/forgotPassword", forgotRouter);
 router.use("/reset", resetRouter);
 router.use("/search", searchRouter);
-
 router.use("/products", productsRouter);
 router.use("/discount", discountRouter);
 router.use("/customers", customersRouter);
@@ -43,5 +42,6 @@ router.use("/category", categoryRouter);
 router.use("/information", informationRouter);
 router.use("/ordersdetails", ordersdetailsRouter);
 router.use("/dashboard", dashboardRouter);
+router.use("/social", socialRouter);
 
 module.exports = router;
