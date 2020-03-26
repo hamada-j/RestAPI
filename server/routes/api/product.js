@@ -6,7 +6,6 @@ const Product = require("../../models/product");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Product.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -17,7 +16,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:productId", (req, res, next) => {
   Product.deleteById(req.params.productId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Product deleted");
     })
     .catch(err => {
@@ -60,7 +58,6 @@ router.post("/", async (req, res, next) => {
 
 /* PATCH http://localhost:3000/api/product/ID*/
 router.patch("/:Id", async (req, res, next) => {
-  console.log(req.params);
   try {
     const result = await Product.update({
       name: req.body.name,

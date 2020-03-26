@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const middleware = require("../middleware/middleware");
 
 const adminRouter = require("./admin/admin");
 const loginRouter = require("./admin/login");

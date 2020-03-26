@@ -49,7 +49,7 @@ exports.newPost = (req, res, next) => {
     .save()
     .then(result => {
       res.status(201).json({
-        message: "Product created with status: 201",
+        message: "Post created with status: 201",
         createdPost: {
           id: result._id,
           titulo: result.titulo,
@@ -69,7 +69,6 @@ exports.newPost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
   const id = req.params.postId;
-  console.log(id);
   Post.remove({ _id: id })
     .exec()
     .then(result => {
@@ -78,9 +77,35 @@ exports.deletePost = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({
         error: err
       });
     });
+};
+
+/* GET(Patch) http://localhost:3000/social/edit/postID*/
+exports.editPost = (req, res) => {
+  Post.findById(req.params.postId, (err, post) => {
+    if (err) return res.json(err);
+    // console.log(post);
+    // Post.save()
+    //   .then(result => {
+    //     res.status(201).json({
+    //       message: "Post created with status: 201",
+    //       createdPost: {
+    //         id: result._id,
+    //         titulo: result.titulo,
+    //         autor: result.autor,
+    //         imagen: result.imagen,
+    //         categoria: result.categoria,
+    //         fecha: result.fecha,
+    //         texto: result.texto
+    //       }
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({ error: err });
+    //   });
+  });
 };

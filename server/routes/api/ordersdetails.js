@@ -6,7 +6,6 @@ const OrderDetails = require("../../models/ordersdetails");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await OrderDetails.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -17,7 +16,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:orderDetailId", (req, res, next) => {
   OrderDetails.deleteById(req.params.orderDetailId)
     .then(result => {
-      console.log(result);
       res.status(201).send("orderDetail deleted");
     })
     .catch(err => {

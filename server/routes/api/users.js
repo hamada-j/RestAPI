@@ -31,7 +31,6 @@ router.post(
     req.body.password = passwordEnc;
     try {
       const result = await User.create(req.body);
-      console.log(result);
       res.status(201).json(result);
     } catch (err) {
       console.log(err);
@@ -48,7 +47,7 @@ router.post("/login", async (req, res) => {
     // console.log(req.body.password, user.password);
     const iguales = bcrypt.compareSync(req.body.password, user.password);
     if (iguales) {
-      res.status(201).json({ success: createToken(user) });
+      res.status(201).json({ success: createToken(user), userId: user.id });
     } else {
       res.status(401).json({ error: "Error en email or password" });
     }
@@ -62,7 +61,7 @@ const createToken = pUser => {
     usuarioId: pUser.id,
     fechaCreacion: moment().unix(),
     fechaExpiracion: moment()
-      .add(15, "minutes")
+      .add(45, "minutes")
       .unix()
   };
   return jwt.encode(payload, "token");

@@ -7,7 +7,6 @@ const Departament = require("../../models/departament");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Departament.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +17,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:departamentId", (req, res, next) => {
   Departament.deleteById(req.params.departamentId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Departament deleted");
     })
     .catch(err => {

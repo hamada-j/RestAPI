@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const middleware = require("../middleware/log");
 
 const apiEmployeesRouter = require("./api/employee");
 const apiCustomersRouter = require("./api/customer");
@@ -15,6 +16,10 @@ const apiDepartamentRouter = require("./api/departament");
 const apiCategoryRouter = require("./api/category");
 const apiUsersRouter = require("./api/users");
 
+router.use("/users", apiUsersRouter);
+
+// router.use(middleware.checkToken);
+// router.use(middleware.registerAction);
 router.use("/employee", apiEmployeesRouter);
 router.use("/customer", apiCustomersRouter);
 router.use("/supplier", apiSuppliersRouter);
@@ -27,7 +32,7 @@ router.use("/territorie", apiTerritorieRouter);
 router.use("/employee_territories", apiEmployeeTerritoriesRouter);
 router.use("/departament", apiDepartamentRouter);
 router.use("/category", apiCategoryRouter);
-router.use("/information", apiInformationRouter);
-router.use("/users", apiUsersRouter);
+
+router.use("/information", middleware.checkToken, apiInformationRouter);
 
 module.exports = router;

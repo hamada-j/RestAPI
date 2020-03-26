@@ -7,7 +7,6 @@ const Territories = require("../../models/territories");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Territories.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +17,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:terrId", (req, res, next) => {
   Territories.deleteById(req.params.terrId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Territories deleted");
     })
     .catch(err => {

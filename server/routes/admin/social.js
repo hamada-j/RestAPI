@@ -107,18 +107,31 @@ router.get("/delete/:postId", (req, res, next) => {
           res.render("social", { layout: "admin_layout", message: response });
         })
         .catch(err => {
-          console.log(err);
           res.status(500).json({
             error: err
           });
         });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({
         error: err
       });
     });
+});
+/* GET(Patch) http://localhost:3000/social/edit/postID*/
+router.get("/edit/:postId", (req, res) => {
+  Post.findById(req.params.postId, (err, post) => {
+    if (err) return res.json(err);
+    res.render("social", { layout: "admin_layout", postEdit: post });
+  });
+});
+
+/* GET(Patch) http://localhost:3000/social/edit/postID*/
+router.post("/update", (req, res) => {
+  Post.findByIdAndUpdate(req.body.id, req.body, (err, post) => {
+    if (err) res.json(err);
+    res.redirect("/admin/social");
+  });
 });
 
 module.exports = router;

@@ -7,7 +7,6 @@ const EmployeeTerritories = require("../../models/employee_territories");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await EmployeeTerritories.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +17,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:pId", (req, res, next) => {
   EmployeeTerritories.deleteById(req.params.pId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Employee_Territories deleted");
     })
     .catch(err => {

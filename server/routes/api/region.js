@@ -7,7 +7,6 @@ const Region = require("../../models/region");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Region.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +17,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:regionId", (req, res, next) => {
   Region.deleteById(req.params.regionId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Region deleted");
     })
     .catch(err => {

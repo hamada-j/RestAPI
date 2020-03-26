@@ -7,7 +7,6 @@ const Category = require("../../models/category");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Category.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +17,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:categoryId", (req, res, next) => {
   Category.deleteById(req.params.categoryId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Category deleted");
     })
     .catch(err => {

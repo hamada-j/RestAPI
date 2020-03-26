@@ -6,7 +6,6 @@ const Employee = require("../../models/employee");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Employee.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -17,7 +16,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:employeeId", (req, res, next) => {
   Employee.deleteById(req.params.employeeId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Order Employee");
     })
     .catch(err => {

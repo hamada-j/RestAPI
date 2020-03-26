@@ -6,7 +6,6 @@ const Customer = require("../../models/customer");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Customer.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -17,7 +16,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:customerId", (req, res, next) => {
   Customer.deleteById(req.params.customerId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Order Customer");
     })
     .catch(err => {
@@ -49,7 +47,6 @@ router.post("/", async (req, res, next) => {
       address: req.body.address,
       fk_region: req.body.fk_region
     });
-    console.log(result);
     res.status(201).json(result);
   } catch (err) {
     res.status(500).json(err);

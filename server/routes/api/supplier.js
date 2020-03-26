@@ -7,7 +7,6 @@ const Supplier = require("../../models/supplier");
 router.get("/", async (req, res, next) => {
   try {
     const rows = await Supplier.getAll();
-    console.log(rows);
     res.status(201).json(rows);
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +17,6 @@ router.get("/", async (req, res, next) => {
 router.delete("/:supplierId", (req, res, next) => {
   Supplier.deleteById(req.params.supplierId)
     .then(result => {
-      console.log(result);
       res.status(201).send("Supplier deleted");
     })
     .catch(err => {
