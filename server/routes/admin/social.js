@@ -15,6 +15,7 @@ router.get("/", (req, res, next) => {
         posts: allPosts.map(post => {
           return {
             id: post._id,
+            autorId: post.autorId,
             titulo: post.titulo,
             autor: post.autor,
             imagen: post.imagen,
@@ -38,6 +39,7 @@ router.get("/", (req, res, next) => {
 router.post("/", (req, res, next) => {
   const post = new Post({
     _id: new mongoose.Types.ObjectId(),
+    autorId: req.body.autorId,
     titulo: req.body.titulo,
     autor: req.body.autor,
     imagen: req.body.imagen,
@@ -56,6 +58,7 @@ router.post("/", (req, res, next) => {
             posts: allPosts.map(post => {
               return {
                 id: post._id,
+                autorId: post.autorId,
                 titulo: post.titulo,
                 autor: post.autor,
                 imagen: post.imagen,
@@ -95,6 +98,7 @@ router.get("/delete/:postId", (req, res, next) => {
             posts: allPosts.map(post => {
               return {
                 id: post._id,
+                autorId: post.autorId,
                 titulo: post.titulo,
                 autor: post.autor,
                 imagen: post.imagen,

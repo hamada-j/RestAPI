@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  autorId: { type: String, require: true },
   titulo: { type: String, require: true },
   autor: { type: String, require: true },
   imagen: { type: String, require: true },
