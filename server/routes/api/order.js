@@ -42,7 +42,7 @@ router.get("/:orderId", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const result = await Order.create({
-      fk_customer: req.body.k_customer,
+      fk_customer: req.body.fk_customer,
       fk_employee: req.body.fk_employee,
       orderdate: req.body.orderdate,
       requiredate: req.body.requiredate,
