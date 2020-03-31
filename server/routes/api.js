@@ -15,6 +15,7 @@ const apiEmployeeTerritoriesRouter = require("./api/employee_territories");
 const apiDepartamentRouter = require("./api/departament");
 const apiCategoryRouter = require("./api/category");
 const apiUsersRouter = require("./api/users");
+const mistakessRouter = require("./api/mistakes");
 
 router.use("/users", apiUsersRouter);
 
@@ -32,6 +33,7 @@ router.use("/territorie", apiTerritorieRouter);
 router.use("/employee_territories", apiEmployeeTerritoriesRouter);
 router.use("/departament", apiDepartamentRouter);
 router.use("/category", apiCategoryRouter);
+router.use("/mistakes", mistakessRouter);
 
 router.use("/information", middleware.checkToken, apiInformationRouter);
 

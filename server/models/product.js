@@ -44,6 +44,17 @@ const getProductbyDiscont = pDescunt => {
     );
   });
 };
+const getAllMistakes = () => {
+  return new Promise((resolve, reject) => {
+    db.query("select * from mistakes", (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
 
 const getAll = () => {
   return new Promise((resolve, reject) => {
@@ -167,5 +178,6 @@ module.exports = {
   update: update,
   getAllInfo: getAllInfo,
   getProductbyDiscont: getProductbyDiscont,
-  getAllInfoId: getAllInfoId
+  getAllInfoId: getAllInfoId,
+  getAllMistakes: getAllMistakes
 };

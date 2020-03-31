@@ -33,7 +33,7 @@
     </div>
 </form>
 <hr>
-<h2>Orders Table </h2>
+<h2>Suppliers Table </h2>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -53,6 +53,7 @@
             <td>{{cust.company}}</td>
             <td>{{cust.contact}}</td>
             <td>{{cust.address}}</td>
+            <td class="imagenDiscout"><img src="{{cust.url}}" alt="Image"></td>
             <td><a href="/admin/regions/regions/see/{{cust.fk_region}}">{{cust.fk_region}}</a></td>
             <td><a href="/admin/suppliers/see/{{cust.id}}" class="btn btn-sm btn-primary">See</a></td>
             <td><a href="/admin/suppliers/edit/{{cust.id}}" class="btn btn-sm btn-primary">Edit</a></td>

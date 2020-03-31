@@ -1,3 +1,15 @@
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+.all {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+}
 main {
   background-color: #555;
 }

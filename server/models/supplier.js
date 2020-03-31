@@ -30,11 +30,11 @@ const getById = pSupplierId => {
   });
 };
 
-const create = ({ company, contact, address, fk_region }) => {
+const create = ({ company, contact, address, fk_region, url }) => {
   return new Promise((resolve, reject) => {
     db.query(
-      "insert into suppliers (company, contact, address, fk_region) values (?,?,?,?)",
-      [company, contact, address, fk_region],
+      "insert into suppliers (company, contact, address, fk_region, url) values (?,?,?,?,?)",
+      [company, contact, address, fk_region, url],
       (err, result) => {
         if (err) {
           reject(err);
@@ -62,11 +62,11 @@ const deleteById = pSupplierId => {
   });
 };
 
-const update = ({ company, contact, address, fk_region, id }) => {
+const update = ({ company, contact, address, fk_region, url, id }) => {
   return new Promise((resolve, reject) => {
     db.query(
-      "UPDATE suppliers SET company = ?,  contact = ?, address = ? fk_region = ? WHERE id = ?",
-      [company, contact, address, fk_region, id],
+      "UPDATE suppliers SET company = ?,  contact = ?, address = ?, fk_region = ?, url = ? WHERE id = ?",
+      [company, contact, address, fk_region, url, id],
       (err, result) => {
         if (err) {
           reject(err);

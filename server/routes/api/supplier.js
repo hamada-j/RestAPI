@@ -46,7 +46,8 @@ router.post("/", async (req, res, next) => {
       company: req.body.company,
       contact: req.body.contact,
       address: req.body.address,
-      fk_region: req.body.fk_region
+      fk_region: req.body.fk_region,
+      url: req.body.url
     });
     res.status(201).json(result);
   } catch (err) {
@@ -62,6 +63,7 @@ router.patch("/:Id", async (req, res, next) => {
       contact: req.body.contact,
       address: req.body.address,
       fk_region: req.body.fk_region,
+      url: req.body.url,
       id: req.params.Id
     });
     res.status(201).json(result);

@@ -15,8 +15,8 @@ router.get("/", async (req, res, next) => {
 /* GET http://localhost:3000/api/information/pDiscont */
 router.get("/:pId", (req, res, next) => {
   Product.getAllInfoId(req.params.pId)
-    .then(prodId => {
-      res.status(201).send(prodId);
+    .then(disc => {
+      res.status(201).send(disc);
     })
     .catch(err => {
       res.status(500).json({
