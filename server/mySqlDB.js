@@ -3,11 +3,11 @@ const mysql = require("mysql");
 // var pool = null;
 exports.connect = () => {
   const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE,
+    host: "bfaf7mhgdl9m9dedaylg-mysql.services.clever-cloud.com",
+    user: "uzais6l5dqjanitp",
+    password: "qQ8cCsvnWw8XFKuVUtgM",
+    port: 3306,
+    database: "bfaf7mhgdl9m9dedaylg",
   });
   global.db = pool;
 };
