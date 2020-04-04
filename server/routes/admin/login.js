@@ -15,7 +15,7 @@ router.post("/login", (req, res, next) => {
   console.log(req.body);
   Admin.find({ email: req.body.email })
     .exec()
-    .then(arrAdmin => {
+    .then((arrAdmin) => {
       if (arrAdmin.length < 1) {
         // return res.render("login", { message: "Authentification Failed" });
         // return res.status(401).json({ message: "Authentification failed 1" });
@@ -39,10 +39,10 @@ router.post("/login", (req, res, next) => {
         // res.render("login");
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 });
@@ -50,39 +50,39 @@ router.post("/login", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   Admin.find({ email: req.body.email })
     .exec()
-    .then(admin => {
+    .then((admin) => {
       if (admin.length >= 1) {
         return res.render("admin", {
           layout: "admin_layout",
-          response: "Exist in DB"
+          response: "Exist in DB",
         });
       } else {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {
             return res.render("admin", {
               layout: "admin_layout",
-              response: "Exist in DB"
+              response: "Exist in DB",
             });
           } else {
             const admin = new Admin({
               _id: new mongoose.Types.ObjectId(),
               email: req.body.email,
-              password: hash
+              password: hash,
             });
             admin
               .save()
-              .then(result => {
+              .then((result) => {
                 console.log(result);
                 res.render("admin", {
                   layout: "admin_layout",
-                  response: result
+                  response: result,
                 });
               })
-              .catch(err => {
+              .catch((err) => {
                 console.log(err);
                 res.render("admin", {
                   layout: "admin_layout",
-                  response: err
+                  response: err,
                 });
               });
           }

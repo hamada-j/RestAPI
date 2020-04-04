@@ -1,8 +1,8 @@
 {
-  "name": "js.io",
+  "name": "shop",
   "version": "8.8.0",
-  "description": "building a RESTAPI",
-  "main": "server/app.js",
+  "description": "building a RESTAPI for a shop",
+  "main": "app.js",
   "scripts": {
     "test": "test",
     "start": "node ./server/bin/www",
@@ -37,6 +37,7 @@
     "morris-js-module": "^1.2.1",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
+    "nodemailer": "^6.4.6",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"

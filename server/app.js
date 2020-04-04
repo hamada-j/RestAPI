@@ -30,7 +30,7 @@ const app = express();
           -MONGO DB - ATLAS
  
 ==========================================**/
-require("./mySqlDB").connect(err => {
+require("./mySqlDB").connect((err) => {
   if (err) {
     throw err;
   }
@@ -50,7 +50,7 @@ app.engine(
   hbs.express4({
     defaultLayout: __dirname + "/views/layouts/layout",
     partialsDir: __dirname + "/views/partials",
-    layoutsDir: __dirname + "/views/layouts"
+    layoutsDir: __dirname + "/views/layouts",
   })
 );
 app.set("view engine", "hbs");
@@ -69,7 +69,7 @@ app.use(
   session({
     secret: "This is my logng string for sessions http",
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 app.use(flash());
@@ -116,7 +116,7 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
-    error: error.message
+    error: error.message,
   });
 });
 module.exports = app;
