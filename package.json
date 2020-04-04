@@ -1,8 +1,8 @@
 {
-  "name": "shop",
+  "name": "js.io",
   "version": "8.8.0",
-  "description": "building a RESTAPI for a shop",
-  "main": "./server/app.js",
+  "description": "building a RESTAPI",
+  "main": "server/app.js",
   "scripts": {
     "test": "test",
     "start": "node ./server/bin/www",
