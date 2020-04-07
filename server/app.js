@@ -73,6 +73,7 @@ app.use(
   })
 );
 app.use(flash());
+app.use("/images", express.static(path.join("images")));
 /** ==========================================
 
               HEADERS --- CORS      
