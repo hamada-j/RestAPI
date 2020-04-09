@@ -1,0 +1,94 @@
+<h2>Supplier of JS.io</h2>
+<hr>
+<h2>Supplier Form</h2>
+<form action="/admin/suppliers" method="POST" id="Form">
+    <div class="form-group row">
+        <label for="company" class="col-sm-2 col-form-label">Supplier Company</label>
+        <div class="col-sm-10">
+            <input name="company" type="text" class="form-control" value="{{supplier.company}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact" class="col-sm-2 col-form-label">Supplier Contact</label>
+        <div class="col-sm-10">
+            <input name="contact" type="text" class="form-control" value="{{supplier.contact}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Supplier Address</label>
+        <div class="col-sm-10">
+            <input name="address" type="text" class="form-control" value="{{supplier.address}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fk_region" class="col-sm-2 col-form-label">Supplier Region</label>
+        <div class="col-sm-10">
+            <input name="fk_region" type="text" class="form-control" value="{{supplier.fk_region}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>
+<hr>
+<h2>Suppliers Table </h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Company </th>
+            <th scope="col">Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Region</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each arrSuppliers as |cust|}}
+        <tr>
+            <th scope="row">{{cust.id}}#</th>
+            <td>{{cust.id}}</td>
+            <td>{{cust.company}}</td>
+            <td>{{cust.contact}}</td>
+            <td>{{cust.address}}</td>
+            <td class="imagenDiscout"><img src="{{cust.url}}" alt="Image"></td>
+            <td><a href="/admin/regions/regions/see/{{cust.fk_region}}">{{cust.fk_region}}</a></td>
+            <td><a href="/admin/suppliers/see/{{cust.id}}" class="btn btn-sm btn-primary">See</a></td>
+            <td><a href="/admin/suppliers/edit/{{cust.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/suppliers/delete/{{cust.id}}" class="btn btn-sm btn-danger"
+                    onclick="return confirm('¿are you ?')">Delete</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<hr>
+<h2>Suppliers</h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Company </th>
+            <th scope="col">Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Region</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <th scope="row">{{supplier.id}}#</th>
+            <td>{{supplier.id}}</td>
+            <td>{{supplier.company}}</td>
+            <td>{{supplier.contact}}</td>
+            <td>{{supplier.address}}</td>
+            <td><a href="/admin/regions/regions/see/{{supplier.fk_region}}">{{cust.fk_region}}</a></td>
+            <td><a href="/admin/suppliers/edit/{{supplier.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/suppliers/delete/{{supplier.id}}" class="btn btn-sm btn-danger"
+                    onclick="return confirm('¿are you ?')">Delete</a></td>
+        </tr>
+    </tbody>
+</table>
+<hr>

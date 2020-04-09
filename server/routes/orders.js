@@ -1,35 +1,16 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-router.get("/", function(req, res, next) {
-  res.status(200).json({
-    message: "get order "
-  });
-});
+const middleware = require("../middleware/middleware");
+const ordersController = require("../controllers/orders");
 
-router.post("/", function(req, res, next) {
-  const order = {
-    productId: req.body.productId,
-    quantity: req.body.quantity
-  };
-  res.status(201).json({
-    message: "posted a order correctly",
-    createdOrder: order
-  });
-});
-
-router.get("/:ordeId", function(req, res, next) {
-  res.status(200).json({
-    message: "get order with id",
-    orderId: req.params.orderId
-  });
-});
-router.delete("/:ordeId", function(req, res, next) {
-  const orderId = req.params.orderId;
-  res.status(200).json({
-    message: "order deleted ",
-    orderId: orderId
-  });
-});
+///// GET  ORDERS Method In MongoDB-Atlas Clusters /////
+router.get("/", middleware, ordersController.ordersGetAll);
+///// POST  ORDER Method In MongoDB-Atlas Clusters /////
+router.post("/", middleware, ordersController.orderPost);
+///// GET/ID  ORDER Method In MongoDB-Atlas Clusters /////
+router.get("/:orderId", middleware, ordersController.orderById);
+///// DEL  ORDER Method In MongoDB-Atlas Clusters /////
+router.delete("/:orderId", middleware, ordersController.orderDelete);
 
 module.exports = router;

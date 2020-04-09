@@ -1,0 +1,128 @@
+<h2>Chart of Product in JS.io</h2>
+<div id="mytertiarychart" style="height: 250px;"></div>
+<script>
+    fetch('http://localhost:3000/api/product/')
+        .then((response) => {
+            console.log(response)
+            return response.json();
+        })
+        .then((dataDB) => {
+            console.log(dataDB);
+            new Morris.Area({
+                element: 'mytertiarychart',
+                // the chart.
+                data: dataDB,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'id',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['unitprice', 'unitstock', 'unitonorder', 'fk_supplier', 'fk_category'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                labels: ['Price', 'Stock', 'Order', 'Supplier', 'Category'],
+                lineColors: ['#6610f2', '#20c997', '#dc3545', '#17a2b8', '#20c997'],
+                lineWidth: 1
+            }).on('click', function (i, row) {
+                console.log(i, row)
+                let algo = document.getElementById('algo')
+                algo.innerText = i
+            });
+
+        });
+
+    function ajax() {
+        const http = new XMLHttpRequest();
+        const url = 'http://localhost:3000/api/orderdetails/';
+        http.onreadystatechange = function () {
+            //if (this.readyState == 4 && this.status == 201) {
+            console.log(this.responseText)
+            //}
+            http.open('GET', url);
+            http.send()
+        }
+    };
+
+</script>
+<hr>
+
+<h2>Products Of JS.io</h2>
+<hr>
+<div class="container">
+    <div class="row">
+        {{#each prodArr as |prod|}}
+        <div class="col-4">
+            <div class="card" style="width: 18rem; margin: 2px;">
+                <img class="card-img-top" src="{{prod.photo}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Product JS.io Name {{prod.name}}</h5>
+                    <p class="card-text">Product JS.io Id: {{prod.id}}</p>
+                    <p class="card-text">Unit Price: ($) {{prod.unitprice}}</p>
+                    <p class="card-text">Unit Stock date: (x1) {{prod.unitstock}}</p>
+                    <p class="card-text">Unit on Order: (x1) {{prod.unitonorder}}</p>
+                    <p class="card-text">Supplier Id: <a
+                            href="/admin/suppliers/edit/{{prod.fk_supplier}}">{{prod.fk_supplier}}</a></p>
+                    <p class="card-text">Category Id: <a
+                            href="/admin/category/edit/{{prod.fk_category}}">{{prod.fk_category}}</a></p>
+                    <p class="card-text"><small class="text-muted"><a href="/admin/products/edit/{{prod.id}}"
+                                class="btn btn-sm btn-primary">Edit</a></small></p>
+                    <p class="card-text"><small class="text-muted"><a href="/admin/products/delete/{{prod.id}}"
+                                class="btn btn-sm btn-danger" onclick="return confirm('¿are you ?')">Delete</a></small>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<hr>
+<h2>Employee Form</h2>
+<form action="/admin/products" method="POST" id="Form">
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Product Name</label>
+        <div class="col-sm-10">
+            <input name="name" type="text" class="form-control" value="{{prod.name}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="unitprice" class="col-sm-2 col-form-label">Product Unit Price</label>
+        <div class="col-sm-10">
+            <input name="unitprice" type="text" class="form-control" value="{{prod.unitprice}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="unitstock" class="col-sm-2 col-form-label">Product Unit in Stock</label>
+        <div class="col-sm-10">
+            <input name="unitstock" type="text" class="form-control" value="{{prod.unitstock}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="unitonorder" class="col-sm-2 col-form-label">Product Unit on Order</label>
+        <div class="col-sm-10">
+            <input name="unitonorder" type="text" class="form-control" value="{{prod.unitonorder}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="fk_supplier" class="col-sm-2 col-form-label">Product Supplier</label>
+        <div class="col-sm-10">
+            <input name="fk_supplier" type="text" class="form-control" value="{{prod.fk_supplier}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fk_category" class="col-sm-2 col-form-label">Product Category Id</label>
+        <div class="col-sm-10">
+            <input name="fk_category" type="text" class="form-control" value="{{prod.fk_category}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="photo" class="col-sm-2 col-form-label">Product Image</label>
+        <div class="col-sm-10">
+            <input name="photo" type="text" class="form-control" value="{{prod.photo}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>
+<hr>

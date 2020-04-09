@@ -1,0 +1,136 @@
+<h2>Orders-Products and Orders</h2>
+<div id="mytertiarychart" style="height: 250px;"></div>
+<script>
+    fetch('http://localhost:3000/api/orderdetails/')
+        .then((response) => {
+            console.log(response)
+            return response.json();
+        })
+        .then((dataDB) => {
+            console.log(dataDB);
+            new Morris.Area({
+                element: 'mytertiarychart',
+                data: dataDB,
+                xkey: 'id',
+                ykeys: ['fk_orders', 'fk_product', 'quantity'],
+                labels: ['id', 'Ordres', 'product', 'quantity'],
+                lineColors: ['#fd7e14', '#17a2b8', '#6f42c1', '#28a745'],
+                lineWidth: 1
+            }).on('click', function (i, row) {
+                console.log(i, row)
+                let algo = document.getElementById('algo')
+                algo.innerText = i
+            });
+
+        });
+
+    function ajax() {
+        const http = new XMLHttpRequest();
+        const url = 'http://localhost:3000/api/orderdetails/';
+        http.onreadystatechange = function () {
+            console.log(this.responseText)x
+            http.open('GET', url);
+            http.send()
+        }
+    };
+
+</script>
+<hr>
+<h2>Info Of Table Orders-Details</h2>
+<hr>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">Product Id</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Discunt</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each ordProdArr as |cust|}}
+        <tr>
+            <th scope="row">{{cust.id}}#</th>
+            <td>{{cust.id}}</td>
+            <td><a href="/admin/orders/see/{{cust.fk_orders}}">{{cust.fk_orders}}</a></td>
+            <td><a href="/admin/products/edit/{{cust.fk_product}}">{{cust.fk_product}}</a></td>
+            <td>{{cust.quantity}}</td>
+            <td>{{cust.discunt}}</td>
+            <td><a href="/admin/ordersdetails/see/{{cust.id}}" class="btn btn-sm btn-primary">See</a></td>
+            <td><a href="/admin/ordersdetails/edit/{{cust.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/ordersdetails/delete/{{cust.id}}" class="btn btn-sm btn-danger"
+                    onclick="return confirm('¿are you ?')">Delete</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<hr>
+<h2>Info Orders-Details</h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">Product Id</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Discunt</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{element.id}}#</th>
+            <td>{{element.id}}</td>
+            <td><a href="/admin/orders/see/{{element.fk_orders}}">{{element.fk_orders}}</a></td>
+            <td><a href="/admin/products/edit/{{element.fk_product}}">{{element.fk_product}}</a></td>
+            <td>{{element.quantity}}</td>
+            <td>{{element.discunt}}</td>
+            <td><a href="/admin/ordersdetails/edit/see/{{element.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/ordersdetails/delete/{{element.id}}" class="btn btn-sm btn-danger"
+                    onclick="return confirm('¿are you ?')">Delete</a></td>
+            <td><a href="/admin/ordersdetails" class="btn btn-sm btn-primary">All Orders-Details</a></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h2>Orders-Details Form</h2>
+<form action="/admin/customers" method="POST" id="Form">
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Order No.</label>
+        <div class="col-sm-10">
+            <input name="fk_orders" type="text" class="form-control" value="{{element.fk_orders}}" id="inputEmail3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Product</label>
+        <div class="col-sm-10">
+            <input value="{{element.fk_product}}" name="fk_product" type="text" class="form-control"
+                id="inputPassword3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Quantity</label>
+        <div class="col-sm-10">
+            <input value="{{element.quantity}}" name="quantity" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Discunt</label>
+        <div class="col-sm-10">
+            <input value="{{element.discunt}}" name="discunt" type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>
+<hr>

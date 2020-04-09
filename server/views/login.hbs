@@ -1,0 +1,32 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h2>Admin Area of JS:IÖ</h2>
+        <div class="fadeIn first">
+            <img src="/images/JS_IÖ.png" id="icon" alt="User Icon" />
+        </div>
+        <form action="/admin/login/login" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control login-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">This Only for Admin stuff</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control login-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="/admin/forgotPassword">Forgot Password?</a>
+        </div>
+
+    </div>
+</div>
+{{#if messages.error}}
+<div class="entry">
+    <h1> {{messages.error}}</h1>
+</div>
+{{/if}}

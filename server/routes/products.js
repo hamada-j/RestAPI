@@ -1,49 +1,45 @@
-var express = require("express");
-var router = express.Router();
-
-// GET Method
-router.get("/", function(req, res, next) {
-  res.status(200).json({
-    message: "from product in get method"
-  });
-});
-
-// POST Method
-router.post("/", function(req, res, next) {
-  const product = {
-    name: req.body.name,
-    price: req.body.price
-  };
-  res.status(201).json({
-    message: "product posted with status 201",
-    createdProduct: product
-  });
-});
-
-// GET Method FOR ID PRODUCT
-router.get("/:productId", function(req, res, next) {
-  const id = req.params.productId;
-  if (id === "special") {
-    res.status(200).json({
-      message: "from GET SPECIAL products url",
-      id: id
-    });
-  } else {
-    res.status(200).json({
-      message: "you passed an ID"
-    });
+const express = require("express");
+const router = express.Router();
+const multer = require("multer");
+const middleware = require("../middleware/middleware");
+const productsController = require("../controllers/products");
+const storege = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./server/public/images/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
   }
 });
-router.patch("/:productId", function(req, res, next) {
-  res.status(200).json({
-    message: "update the product "
-  });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({
+  storage: storege,
+  limits: {
+    fieldSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
 });
 
-router.delete("/:productId", function(req, res, next) {
-  res.status(200).json({
-    message: "delete product "
-  });
-});
+///// GET from MongoDB-Atlas Clusters /////
+router.get("/", productsController.getAll);
+/////  POST In MongoDB-Atlas Clusters /////
+router.post(
+  "/",
+  middleware,
+  upload.single("productImage"),
+  productsController.addProduct
+);
+///// GET single Product Method In MongoDB-Atlas Clusters /////
+router.get("/:productId", productsController.productByID);
+/////  PATCH edit a Product In MongoDB-Atlas Clusters /////
+router.patch("/:productId", middleware, productsController.editProduct);
+/////  DELETE Product from MongoDB-Atlas Clusters /////
+router.delete("/:productId", middleware, productsController.deleteProduct);
 
 module.exports = router;

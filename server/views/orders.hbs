@@ -1,0 +1,153 @@
+<h2>Orders-Customers-Employee</h2>
+<div id="mytertiarychart" style="height: 250px;"></div>
+<script>
+    fetch('http://localhost:3000/api/order')
+        .then((response) => {
+            console.log(response)
+            return response.json();
+        })
+        .then((dataDB) => {
+            console.log(dataDB);
+            new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'mytertiarychart',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: dataDB,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'id',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['fk_customer', 'fk_employee'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                labels: ['Customer', 'Employee'],
+                lineColors: ['#343a40', '#20c997'],
+                lineWidth: 1
+            }).on('click', function (i, row) {
+                console.log(i, row)
+                let algo = document.getElementById('algo')
+                algo.innerText = i
+            });
+
+        });
+
+    function ajax() {
+        const http = new XMLHttpRequest();
+        const url = 'http://localhost:3000/api/orderdetails/';
+        http.onreadystatechange = function () {
+            //if (this.readyState == 4 && this.status == 201) {
+            console.log(this.responseText)
+            //}
+            http.open('GET', url);
+            http.send()
+        }
+    };
+
+</script>
+<hr>
+
+<h2>Orders Table </h2>
+<hr>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Customer Id</th>
+            <th scope="col">Employee Id</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Require Date</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each ordArr as |cust|}}
+        <tr>
+            <th scope="row">{{cust.id}}#</th>
+            <td>{{cust.id}}</td>
+            <td><a href="/admin/customers/{{cust.fk_customer}}">{{cust.fk_customer}}</a></td>
+            <td><a href="/admin/employee/edit/{{cust.fk_employee}}">{{cust.fk_employee}}</a></td>
+            <td>{{cust.orderdate}}</td>
+            <td>{{cust.requiredate}}</td>
+            <td>{{cust.address}}</td>
+            <td><a href="/admin/orders/see/{{cust.id}}" class="btn btn-sm btn-primary">See</a></td>
+            <td><a href="/admin/orders/edit/{{cust.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/orders/delete/{{cust.id}}" class="btn btn-sm btn-danger"
+                    onclick="return confirm('¿are you ?')">Delete</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<hr>
+<h2>Info Orders-Details</h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Customer Id</th>
+            <th scope="col">Employee Id</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Require Date</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{element.id}}#</th>
+            <td>{{element.id}}</td>
+            <td><a href="/admin/customers/{{element.fk_customer}}">{{element.fk_customer}}</a></td>
+            <td><a href="/admin/employee/{{element.fk_employee}}">{{element.fk_employee}}</a></td>
+            <td>{{element.orderdate}}</td>
+            <td>{{element.requiredate}}</td>
+            <td>{{element.address}}</td>
+            <td><a href="/admin/orders/edit/{{element.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <td><a href="/admin/orders/delete/{{element.id}}" class="btn btn-sm btn-danger"
+                    onclick="return confirm('¿are you ?')">Delete</a></td>
+            <td><a href="/admin/orders" class="btn btn-sm btn-primary">All Orders-Details</a></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h2>Orders-Details Form</h2>
+<form action="/admin/orders" method="POST" id="Form">
+    <div class="form-group row">
+        <label for="fk_customer" class="col-sm-2 col-form-label">Customer No.</label>
+        <div class="col-sm-10">
+            <input name="fk_customer" type="text" class="form-control" value="{{element.fk_customer}}" id="inputEmail3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fk_employee" class="col-sm-2 col-form-label">Employee No.</label>
+        <div class="col-sm-10">
+            <input value="{{element.fk_employee}}" name="fk_employee" type="text" class="form-control"
+                id="inputPassword3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="orderdate" class="col-sm-2 col-form-label">Order Date</label>
+        <div class="col-sm-10">
+            <input value="{{element.orderdate}}" name="orderdate" type="text" class="form-control" id="inputPassword3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="requiredate" class="col-sm-2 col-form-label">Require Date</label>
+        <div class="col-sm-10">
+            <input value="{{element.requiredate}}" name="requiredate" type="text" class="form-control"
+                id="inputPassword3">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input value="{{element.address}}" name="address" type="text" class="form-control" id="inputPassword3">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>
+<hr>

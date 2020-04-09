@@ -1,7 +1,5 @@
 ### BackEnd Side PROJECT
 
-This is the final project of the Bootcam in NeoLand, by Hamada ;).
-This part represents the BackEnd of the application, which will have two connections to: a relational database (SQL) MySQL and another non-relational one (noSQL) MongoDB-Atlas. And a render in the BackEnd-NodeJS with Hadlebars(HBS) a view for the administrator.
 
 ## REST-API
 
@@ -23,9 +21,7 @@ REST-API are Statless Backends
 
 ### /users(id) : GET, POST, PATCH, DELETE
 
-### /client(id) : GET, POST, PATCH, DELETE
 
-## Users
 
 ### /product(id) : GET, PATCH
 
@@ -219,3 +215,4 @@ verification en both side of is verification valid to make a strict connection. 
 - CORS from `npm install cors --save` for "cors" sesion.
 
 ### AUTHENTICATION
+<
