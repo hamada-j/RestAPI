@@ -1,13 +1,6 @@
 ### BackEnd Side PROJECT
-
-This is the final project of the Bootcam in NeoLand, by Hamada.
-This part represents the BackEnd of the application, which will have two connections to: a relational database (SQL) MySQL and another non-relational one (noSQL) MongoDB-Atlas. And a render in the BackEnd-NodeJS with Hadlebars(HBS) a view for the administrator.
-
-### Repository and History
-
-- 1º Branch develop-> in GitHub from GitHub Desktop (https://github.com/hamada-j/), global company that provides hosting for software development version control using Git.
-- 2º Branch test-> in Circleci-Project(CircleCI build in https://app.circleci.com/pipelines/github/hamada-j/RestAPI) Docker Medium 2 CPU / 4 GB RAM(https://hub.docker.com/repository/docker/sh2020/hamada-j) every code change triggers automated tests in a clean container or VM. CircleCI then sends an email notification of success or failure after the tests complete.
-- 3º Branch master-> in Heroku-Master from Git (https://shrestapi.herokuapp.com/) is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+_____________________________________________X
+need be tested
 
 ## REST-API
 
@@ -29,13 +22,7 @@ REST-API are Statless Backends
 
 ### /users(id) : GET, POST, PATCH, DELETE
 
-### /region(id) : GET, POST, PATCH, DELETE
 
-### /territorie(id) : GET, POST, PATCH, DELETE
-
-### /supplier(id) : GET, POST, PATCH, DELETE
-
-## Employee
 
 ### /product(id) : GET, PATCH
 
@@ -229,41 +216,4 @@ verification en both side of is verification valid to make a strict connection. 
 - CORS from `npm install cors --save` for "cors" sesion.
 
 ### AUTHENTICATION
-
-### Fix later
-
-Token
-`$ npm install jwt`
-
-`$ npm install bycrpt`
-
-moment
-`$ npm install moment`
-
-cookie
-`$ npm install cookie-parser`
-npm install jwt-simple
-
-message
-`npm install --save express-flash`
-`npm install --save express-session`
-
-flash-messages No funciona
-`$ npm install express-flash-messages`
-
-```javascript
-app.use(
-  session({
-    secret: "This is my logng string for sessions http",
-    resave: false,
-    saveUninitialized: true
-  })
-);
-app.use(flash());
-```
-
-code in login.hs
-
-`$ npm i morris-js-module`
-`bcryptjs` login users
-`express validator`login users
+<
