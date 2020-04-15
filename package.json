@@ -1,5 +1,5 @@
 {
-  "name": "shop",
+  "name": "@hamada-j/shop",
   "version": "8.8.0",
   "description": "building a RESTAPI for a shop",
   "main": "app.js",
@@ -42,5 +42,11 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "url": "https://github.com/hamada-j/RestAPI.git"
+  }
 }
