@@ -1,5 +1,5 @@
 {
-  "name": "@hamada-j/shop",
+  "name": "@hamada-j",
   "version": "8.8.0",
   "description": "building a RESTAPI for a shop",
   "main": "app.js",
