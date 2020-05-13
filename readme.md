@@ -273,7 +273,7 @@ code in login.hs
         \          SORRY            /
          \                         /
           \    This part does     /
-           ]        Hamada      [
+           ]        Hamada       [
            ]   not exist yet.    [    ,'|
            ]                     [   /  |
            ]___               ___[ ,'   |
