@@ -270,7 +270,7 @@ code in login.hs
 
 .......
 
-        \          SORRY            /
+        \          SORRY!            /
          \                         /
           \    This part does     /
            ]        Hamada       [
