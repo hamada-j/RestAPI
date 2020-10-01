@@ -268,7 +268,7 @@ code in login.hs
 `bcryptjs` login users
 `express validator`login users
 
-.......
+...
 
         \          SORRY!            /
          \                         /
